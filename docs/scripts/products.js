@@ -2,21 +2,21 @@ const card_cont = document.getElementById("card-cont");
 const user_key = localStorage.getItem("user_key");
 
 if(!user_key) {
-    window.location.replace("/docs/login.html");
+    window.location.replace("/login.html");
 }
 
 
 //Products Array List
 var products = [
-    { id:"pd001", name:"Beeveil One", price:23.50, img:"/docs/assets/images/beehive-veil-1.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd002", name:"Beeveil Two", price:33.50, img:"/docs/assets/images/beehive-veil-2.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd003", name:"Beeveil Three", price:43.50, img:"/docs/assets/images/beehive-veil-3.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd004", name:"Beehive", price:50.50, img:"/docs/assets/images/beehive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd005", name:"Hive tool V1", price:20.50, img:"/docs/assets/images/hive-tool.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd006", name:"Hive tool V2", price:30.50, img:"/docs/assets/images/hive-tool-2.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd007", name:"Horizontal Top Beehive", price:120.50, img:"/docs/assets/images/horizontal-top-beehive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd008", name:"Langstroth Beehive", price:150.70, img:"/docs/assets/images/langstroth-beehive.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-    { id:"pd009", name:"Warre Beehive", price:110.70, img:"/docs/assets/images/warre-hive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd001", name:"Beeveil One", price:23.50, img:"/assets/images/beehive-veil-1.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd002", name:"Beeveil Two", price:33.50, img:"/assets/images/beehive-veil-2.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd003", name:"Beeveil Three", price:43.50, img:"/assets/images/beehive-veil-3.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd004", name:"Beehive", price:50.50, img:"/assets/images/beehive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd005", name:"Hive tool V1", price:20.50, img:"/assets/images/hive-tool.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd006", name:"Hive tool V2", price:30.50, img:"/assets/images/hive-tool-2.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd007", name:"Horizontal Top Beehive", price:120.50, img:"/assets/images/horizontal-top-beehive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd008", name:"Langstroth Beehive", price:150.70, img:"/assets/images/langstroth-beehive.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
+    { id:"pd009", name:"Warre Beehive", price:110.70, img:"/assets/images/warre-hive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
 
 ];
 

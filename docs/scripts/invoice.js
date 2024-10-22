@@ -218,7 +218,7 @@ cancel_cart_btn.addEventListener("click" , (e) => {
    var response = window.confirm("Are you sure you want to empty your cart?");
    if(response){
     localStorage.removeItem("cart");
-    window.location.replace("/docs/products.html");
+    window.location.replace("/products.html");
    }
 })
 
