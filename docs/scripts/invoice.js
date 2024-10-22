@@ -3,8 +3,6 @@ var sub_total = 0;
 var summary_cont = document.getElementById("summary-cont");
 
 
-
-
 function fetchCart(){
     var cart = localStorage.getItem("cart") === null ?  [] : JSON.parse(localStorage.getItem("cart")) ;
     return cart;
@@ -206,7 +204,7 @@ var para_section_four = document.createElement("p");
 para_section_four.textContent = "Total"
 
 var  para_section_dol_four = document.createElement("p");
-para_section_dol_four.textContent = "$" +  (sub_total - (.16 * sub_total)).toFixed(2);
+para_section_dol_four.textContent = "$" +  (sub_total + (.16 * sub_total)).toFixed(2);
 
 div_section_four.appendChild(para_section_four);
 div_section_four.appendChild(para_section_dol_four);

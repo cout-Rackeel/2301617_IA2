@@ -65,8 +65,6 @@ function removeFromCart(product)
         }
     }
     localStorage.setItem("cart" , JSON.stringify(cart));
-
-
 }
 
 function drawProductCards(product){
