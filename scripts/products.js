@@ -2,7 +2,7 @@ const card_cont = document.getElementById("card-cont");
 const user_key = localStorage.getItem("user_key");
 
 if(!user_key) {
-    window.location.replace("../pages/login.html");
+    window.location.replace("../docs/login.html");
 }
 
 
