@@ -1,0 +1,119 @@
+
+
+
+#card-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3em;
+    padding: 0em 3em;
+}
+
+.card{
+    border: .1px solid lightgray;
+    border-radius: 5px;
+    padding: 2em .5em;
+    transition: all linear 100ms 0ms;
+    
+}
+
+.card-img{
+    width: 100%;
+    height: 250px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; 
+    /* background-image: url("../assets/images/beehive-veil-2.webp"); */
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: .75em;
+}
+
+.card-flex{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.card-desc{
+    margin: 1.5em 0em;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.5;
+    font-size: .9em;
+}
+
+.card-title{
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+#add_product_btn{
+    text-align: center;
+    width: 100%;
+    padding: .5em 1em;
+    border-radius: 2em;
+    text-decoration: none;
+    font-size: .9em;
+    background-color: var(--pri-clr-dark);
+    color: white;
+    border: .5px solid transparent; 
+    cursor: pointer;
+    transition: 
+        border ease-in 300ms,
+        transform ease-in-out 200ms 50ms;
+}
+
+
+
+#add_product_btn:hover , #cancel_product_btn:hover{
+    transform: scale(1.05);
+}
+
+#cancel_product_btn{
+    text-align: center;
+    width: 100%;
+    padding: .5em 1em;
+    border-radius: 2em;
+    text-decoration: none;
+    font-size: .9em;
+    background-color: crimson;
+    color: white;
+    border: .5px solid transparent; 
+    cursor: pointer;
+    margin-top: 1em;
+    transition: 
+        border ease-in 300ms,
+        transform ease-in-out 200ms 50ms;
+}
+
+.card:hover{
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.285);
+}
+
+video{
+    width: 100%;
+    height: 100%;
+    z-index: -1 ;
+    margin: 2em 0em;
+}
+
+@media only screen and (max-width: 600px) {
+    #card-cont{
+    grid-template-columns: 1fr;
+    }
+
+    video{
+        margin: 0px auto;
+        width: 100%;
+        height: 80%;
+        z-index: -1 ;
+        margin: 2em 0em;
+    }
+}
+
