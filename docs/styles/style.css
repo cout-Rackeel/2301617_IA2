@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart");
 :root{
     --pri-clr-dark : hsl(240, 100%, 3%);
     --pri-clr-light : white;
@@ -40,7 +40,6 @@ body{
     font-style: normal;
   }
 
-
 .raleway-400{
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
@@ -62,6 +61,24 @@ body{
     font-style: normal;
   }
 
+.mont-400{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.mont-600{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.txt-1{
+    font-size: .9em;
+}
+
   .txt-sml{
     margin-bottom: 3.25em;
     font-size: 1em;
@@ -77,10 +94,9 @@ body{
     margin-top: 2em;
 }
 
-/* END */
-
-
-/*  */
+.mt-05{
+    margin-top: .75em;
+}
 
 .navbar{
     height: 0vh;
@@ -99,7 +115,7 @@ body{
 .logo{
     width: 4.5em;
     height: 4.5em;
-    margin-right: 175px;
+    margin-right:100px;
 }
 
 .link-list{
@@ -119,6 +135,20 @@ body{
     font-weight: 400;
     font-style: normal;
     font-size: .9em;
+    color: black;
+}
+
+.nav-icons{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 1em;
+}
+
+.material-symbols-outlined.shopping_cart{
+    font-size: 2.1em;
+    cursor: pointer;
+    text-decoration: none;
     color: black;
 }
 
@@ -148,63 +178,26 @@ body{
     padding: 1em 1.25em;
     border-radius: 2em;
     text-decoration: none;
-    font-size: .9em;
+    font-size: .8em;
     background-color: var(--pri-clr-dark);
     color: white;
     border: .5px solid transparent; 
     cursor: pointer;
     transition: 
-        border ease-in 300ms,
-        transform ease-in-out 200ms 50ms;
+        transform linear 200ms 0ms;
     
 }
 
-.cta-btn:hover{
-    transform: scale(1.1);
+.cta-sm{
+    font-size: .75em;
 }
 
-.jumbotron{
-    height: 100vh;
-    padding: 0em 3em ;
-    position: relative;
-    background-size: cover;
-    background-image: url('./assets/images/bg.jpg');
-    background-repeat: no-repeat;
-    z-index: 1;
-    color: var(--pri-clr-dark);
+.cta-md{
+    font-size: .8em;
 }
 
-.text-display{
-    padding: 1em 0em 0em 3em;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.dp{
-    position: absolute;
-    top: 5%;
-    right: 0%;
-    height:500px;
-    background-image: url('./assets/images/jesus_kneel-removebg.png');
-    background-repeat: no-repeat;
-    width: 800px;
-    height: 800px;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
-
-.banner-heading{
-    letter-spacing: 4px;
-    font-size: 3em;
-    line-height: 1.5;
-}
-
-.banner-details{
-    margin-top: 30px;
-    line-height: 2;
+.cta-lg{
+    font-size: 1em;
 }
 
 .cta-btn-cont{
@@ -220,8 +213,6 @@ body{
 }
 
 .cta-btn.primary{
-    /* background-color: white;
-    color: var(--pri-clr-main); */
     background-color: var(--pri-clr-dark);
     color: white;
     border: .5px solid transparent;
@@ -233,33 +224,6 @@ body{
     color: var(--pri-clr-main);
 }
 
-.cta-btn.primary:hover{
-    border: .5px solid white;
-}
-
-.cta-btn.secondary:hover{
-    background-color: var(--pri-clr-light);
-    /* border: .5px solid var(--pri-clr-light); */
-}
-
-.stats{
-    margin-top: 5em;
-    display: flex;
-    width: 70%;
-    gap: 4em;
-}
-
-.stat-block{
-    display: flex;
-    flex-direction: column;
-    max-width: 20%;
-    justify-content: center;
-    /* align-items: center; */
-}
-
-.stat-block > h3{
-    color: var(--pri-clr-dark);
-}
 
 .svg-icon{
     width: 60px;
@@ -278,11 +242,7 @@ body{
     box-shadow: 1px 1px 1px  rgb(0, 0, 0);
 }
 
-.tech-box-cont{
-    display: flex;
-    width: 100%;
-    gap: 5em;
-}
+
 
 .footer-cont{
     min-height: 50px;
@@ -291,34 +251,6 @@ body{
     justify-content: center;
     align-items: center;
 
-}
-
-#contact-section{
-    height: 400px; 
-    margin-top: 50px; 
-    padding: 0em 6em;  
-    border-bottom: 1px solid lightgray;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5em;
-}
-
-.contact-card{
-    width: 500px;
-    height: 150px;
-    border-radius: 2px;
-    border: 10px solid var(--pri-clr-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5em 2em;
-    gap: .25em;
-}
-
-.email{
-    width: 75px;
-    color: var(--pri-clr-light-blue);
 }
 
 .prof-cont{
@@ -390,6 +322,8 @@ body{
     width: 100%;
     line-height: 1.3em;
 }
+
+
 
 
 
