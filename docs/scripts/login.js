@@ -22,7 +22,6 @@ function setSuccess(){
     error.classList.remove("error");
 }
 
-
 loginForm.addEventListener('submit', e => {
 
     let username_val = username.value.trim();
