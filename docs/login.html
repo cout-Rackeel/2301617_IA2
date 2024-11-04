@@ -41,30 +41,40 @@
         <h2 class="raleway-600">Login</h2>
         <a href="./index.html"><img class="form-logo" src="./assets/images/keepiary-white.png" alt="" ></a>
       
+        <!-- i. Login Form -->
+        <form id="login-form" method="post">
 
-        <form id="login-form" action="./products.html" method="get">
-
+            <!-- TRN Field -->
             <div class="form-ctrl">
-                <label class="raleway-300" for="username">Username</label>
-                <input  id="username" type="text" name="username" required >
+                <label class="raleway-300" for="trn">TRN</label>
+                <input id="trn" type="text" name="trn" required pattern="\d{3}-\d{3}-\d{3}" placeholder="000-000-000">
             </div>
     
+            <!-- Password Field -->
             <div class="form-ctrl">
                 <label class="raleway-300" for="password">Password</label>
                 <input id="password" type="password" name="password" required>
             </div>
+
+            <!-- Error message display -->
+            <span id="error" class="raleway-300"></span>
     
-            <span id="error" class="raleway-300"> </span>
-    
-            <div style="width: 100%; display: flex; justify-content: center; margin-top:2em;">
-                <button type="submit" class="cta-btn">Submit</button>
+            <!-- iv. Login Button -->
+            <div style="width: 100%; display: flex; justify-content: center; margin-top:2em; gap:1rem;">
+                <button type="submit" class="cta-btn">Login</button>
+                <!-- v. Cancel Button -->
+                <button type="button" class="cta-btn secondary" onclick="clearForm()">Cancel</button>
+            </div>
+
+            <!-- vi. Reset Password Link -->
+            <div style="text-align: center; margin-top: 1em;">
+                <a href="/reset-password.html" class="raleway-300">Reset Password</a>
             </div>
     
         </form>
     </div>
 
-
-
     
 </body>
 </html>
+
