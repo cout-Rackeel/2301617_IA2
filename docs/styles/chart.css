@@ -13,4 +13,16 @@ body {
     width: 1000px;
     height: 200px; 
   }
+
+  .search-wrapper{
+    width:100px;
+    height: 100px;
+  }
+  
+  .user-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+    gap: .25rem;
+    margin-top: 1rem
+  }
   
