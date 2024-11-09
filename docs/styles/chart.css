@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chart-container {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  
+  .chart-wrapper canvas {
+    width: 1000px;
+    height: 200px; 
+  }
+  
