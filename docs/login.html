@@ -25,6 +25,7 @@
             <ul class="link-list">
                 <li><a href="./index.html" class="link">Home</a></li>
                 <li><a href="./products.html" class="link">Products</a></li>
+                <li><a href="./dashboard.html" class="link">Dashboard</a></li>
                 <li><a href="./about-us.html" class="link ">About Us</a></li>
             </ul>
         </nav>
@@ -34,7 +35,7 @@
             <span style="font-size: 2em;">|</span>
             <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
         </div>
-    </header>
+    </header>g
 
 
     <div class="form-container">
@@ -54,22 +55,30 @@
             <div class="form-ctrl">
                 <label class="raleway-300" for="password">Password</label>
                 <input id="password" type="password" name="password" required>
+                <a class="raleway-300" style="font-size: .8em;" href="/reset-password.html" class="raleway-300">Reset Password</a>
             </div>
+
+                     <!-- vi. Reset Password Link -->
+                     <div style="font-size:.85em;">
+                       
+                    </div>
 
             <!-- Error message display -->
             <span id="error" class="raleway-300"></span>
+            
     
             <!-- iv. Login Button -->
-            <div style="width: 100%; display: flex; justify-content: center; margin-top:2em; gap:1rem;">
+            <div style="width: 100%; display: flex; justify-content: space-evenly; margin:2em 0em; gap:1rem;">
                 <button type="submit" class="cta-btn">Login</button>
                 <!-- v. Cancel Button -->
                 <button type="button" class="cta-btn secondary" onclick="clearForm()">Cancel</button>
             </div>
 
-            <!-- vi. Reset Password Link -->
-            <div style="text-align: center; margin-top: 1em;">
-                <a href="/reset-password.html" class="raleway-300">Reset Password</a>
+            <div style="text-align: center; font-size:.9em; margin-top: 2em;">
+                <span class="raleway-300">Dont have an account? <a href="./register.html" class="raleway-300">Register</a></span>
             </div>
+
+   
     
         </form>
     </div>
