@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Page</title>
-    <link rel="stylesheet" href="Checkout.css">
+    <link rel="stylesheet" href="./styles/checkout.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/checkout.js" defer></script>
 </head>
 <body>
+
+    <header class="navbar">
+        <nav>
+            <ul class="link-list">
+                <li><a href="./index.html" class="link active">Home</a></li>
+                <li><a href="./products.html" class="link">Products</a></li>
+                <li><a href="./dashboard.html" class="link">Dashboard</a></li>
+                <li><a href="./about-us.html" class="link ">About Us</a></li>
+            </ul>
+        </nav>
+        <a href=".#"><img class="logo" src="./assets/images/keepiary-white.png" alt="" ></a>
+        <div class="nav-icons">
+            <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
+            <span style="font-size: 2em;">|</span>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
+        </div>
+    </header>
+
 
     <div class="checkout-container">
         <button id="checkout-btn" class="btn-checkout" type="button">View Cart Summary</button>
@@ -40,6 +60,6 @@
     <button onclick="goBackToCart()">Cancel</button>
 </div>
 
-<script src="checkout.js" defer></script>
+
 </body>
 </html>
