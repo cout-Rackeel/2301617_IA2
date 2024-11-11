@@ -9,7 +9,10 @@ const sendEmailBtn = document.getElementById('send-email-btn'); // Ensure this b
 const emailNotification = document.getElementById('email-notification'); // Notification message
 
 // Initialize the allInvoices array from localStorage or create an empty array
-let allInvoices = JSON.parse(localStorage.getItem("allInvoices")) || [];
+//let allInvoices = JSON.parse(localStorage.getItem("RegistrationData.invoices[]")) || [];
+let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {};
+let allInvoices = registrationData.invoices || [];
+
 
 // Function to generate a unique invoice and store it in allInvoices
 function createInvoice(cart, subTotal, shippingInfo) {
@@ -45,7 +48,7 @@ function createInvoice(cart, subTotal, shippingInfo) {
 let shippingDetails = JSON.parse(localStorage.getItem('shippingDetails')) || {};
 
 // Fetch TRN from localStorage (if available)
-const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+//const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
 let registeredUser = registrationData.find(user => user.trn);
 
 // Set the TRN in the invoice if available
