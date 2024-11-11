@@ -28,16 +28,16 @@
 
     <div class="divider mt-1">       
         <div style="width: 100%;">
-            <div class="left-invoice">
-                <div class="title-btn-cont">
-                    <h2 class="raleway-600">Checkout</h2>
                 </div>
                 <div id="invoice_cont"></div>
             </div>
-            <div style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
-                <h2 class="raleway-600">Invoice</h2>
-                <h2 class="raleway-600">Company Name </h2>
-                <p><strong>Invoice Number and Date:</strong> <span id="invoice-number-Date"></span></p>
+            <div class="invoices-container">
+                <h1 class="invoice-heading"> <b>Invoice</b></h1> </br>
+            </div>
+            <div class="invoice-info">
+                <p><strong>Company Name </strong> </p>
+                <p><strong>Invoice Number and Date: </br></strong> <span id="invoice-number-Date"></span></p>
+                <p><strong>TRN:</strong> <span id="trn"></span></p>
             </div>
             <div class="invoice-container">
                 <h3>Shipping Information</h3>
@@ -45,41 +45,20 @@
                 <p><strong>Address:</strong> <span id="shipping-address"></span></p>
                 <p><strong>Amount Paid:</strong> $<span id="shipping-amount-paid"></span></p>
             </div>
-            <h3 class="raleway-400 mt-1">Summary of Items</h3>
-           
+        
             <div class="overflow" id="summary-cont"> 
 
 
             </div>    
+        <!-- Button to trigger the email notification -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="send-email-btn">Send Invoice to Email</button>
+        </div>
+        <!-- Email notification message -->
+           <!-- Email notification message that will be displayed when the invoice is "sent" -->
+          <div id="email-notification" style="display: none;">The invoice has been sent to your email!</div>
          </div>
     </div>
-    <div style="margin-top: 80px;">
-        <div class="title-btn-cont">
-            <h2 class="raleway-600">Continue Shopping</h2>
-            <a href="/products.html"  class="raleway-400 cta-btn ">Exit</a>
-        </div>
-
-        <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; align-items: center; gap: 2em;">
-            <div class=" mt-1">
-                <div class="card-img"></div>
-                <div class="card-flex"></div>
-            </div>
-
-            <div class=" mt-1">
-                <div class="card-img"></div>
-                <div class="card-flex"></div>
-            </div>
-
-            <div class=" mt-1">
-                <div class="card-img"></div>
-                <div class="card-flex"></div>
-            </div>
-
-            <div class=" mt-1">
-                <div class="card-img"></div>
-                <div class="card-flex"></div>
-            </div>
-        </div>
-    </div>   
+    
 </body>
 </html>

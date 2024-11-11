@@ -27,24 +27,16 @@
         </div>
     </header>
 
-
-    <div class="checkout-container">
-        <button id="checkout-btn" class="btn-checkout" type="button">View Cart Summary</button>
-    </div>
-
-<!-- Checkout Modal for Cart Summary -->
-<div id="checkout-modal" class="modal" style="display: none;">
-    <div class="modal-content">
+<div id="checkout-summary" class="checkout-summary">
         <h2>Shopping Cart Summary</h2>
         <div id="cart-summary"></div>
         <p><strong>Total: $<span id="total-cost">0</span></strong></p>
         <button id="proceed-to-Purchasing and Shipping">Proceed to Purchasing and Shipping</button>
-        <button onclick="closeModal()">Cancel</button>
     </div>
 </div>
 
 <!-- Shipping Details Form -->
-<div id="shipping-details" style="display: none;">
+<div id="shipping-details" class="shipping-details" style="display: none;">
     <h3>Shipping Details</h3>
     <form id="shipping-form">
         <label for="name">Customer Name:</label>
@@ -57,7 +49,7 @@
         <input type="text" id="amount-paid" required><br>
     </form>
     <button id="confirm-checkout">Confirm</button>
-    <button onclick="goBackToCart()">Cancel</button>
+    <button type="button" onclick="goBackToCart()">Cancel</button>
 </div>
 
 

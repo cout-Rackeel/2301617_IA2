@@ -1,48 +1,59 @@
-const default_password = "password";
-const default_username = "user";
 
-// 
 let loginForm = document.getElementById("login-form");
-let username = document.getElementById("username");
-let password = document.getElementById("password");
+let trnInput = document.getElementById("trn");
+let passwordInput = document.getElementById("password");
 let error = document.getElementById("error");
 let count = 0;
 
+// Retrieve Registration Info
+const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+let registeredUser = registrationData.find(user => user.trn && user.password);
 
-
-function setError(error, message){
+// Function to display error message
+function setError(message) {
     console.log("Set Error");
     error.innerHTML = message;
     error.classList.add("error");
 }
 
-function setSuccess(){
+// Function to display success message
+function setSuccess() {
     console.log("Set Success");
-    error.innerHTML = "Successful";
+    error.innerHTML = "Login Successful!";
     error.classList.remove("error");
 }
 
+// Event listener for form submission
 loginForm.addEventListener('submit', e => {
+    e.preventDefault(); // Prevent form submission to allow validation
 
-    let username_val = username.value.trim();
-    let password_val = password.value.trim();
+    let trnVal = trnInput.value.trim();
+    let passwordVal = passwordInput.value.trim();
 
-    if(count == 2){
+    // Check if the user has exceeded max attempts
+    if (count === 2) {
         console.log("Error Page");
         window.location.replace("error.html");
+        return;
     }
 
-    if(password_val.length < 8){
-        e.preventDefault();
-        setError(error,"Password cannot be less than 8 characters");
-    }else if(password_val != default_password || username_val != default_username){
-        e.preventDefault();
+    // Check if password is at least 8 characters
+    if (passwordVal.length < 8) {
+        setError("Password cannot be less than 8 characters");
+        return;
+    }
+
+    // Validate credentials
+    if (!registeredUser || registeredUser.trn !== trnVal || registeredUser.password !== passwordVal) {
         count++;
-        alert((3 - count) + " More Attempts");
-        setError(error,"Invalid Credentials");
-    }else{
-        localStorage.setItem("user_key", JSON.stringify({"username": username_val , password:password_val}));
+        alert((3 - count) + " Attempt(s) Remaining");
+        setError("Invalid Credentials");
+    } 
+    // Successful login
+    else {
+        setSuccess();
+        localStorage.setItem("user_key", JSON.stringify({"trn": trnVal, "password": passwordVal}));
+        // Redirect to a new page after successful login
+        window.location.replace("products.html");
     }
-
 });
-

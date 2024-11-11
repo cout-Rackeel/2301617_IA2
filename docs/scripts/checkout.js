@@ -1,60 +1,83 @@
-// Simulated cart data retrieval (e.g., from localStorage)
-const cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve or initialize cart
+// Selecting Elements
+const cartSummary = document.getElementById("cart-summary");
+const totalCostEl = document.getElementById("total-cost");
+const proceedToPurchaseBtn = document.getElementById("proceed-to-Purchasing and Shipping");
+const shippingDetails = document.getElementById("shipping-details");
+const confirmCheckoutBtn = document.getElementById("confirm-checkout");
+const shippingForm = document.getElementById("shipping-form");
 
-document.getElementById('checkout-btn').addEventListener('click', openCartSummary);
+// Input fields for shipping details
+const nameInput = document.getElementById("name");
+const addressInput = document.getElementById("address");
+const amountPaidInput = document.getElementById("amount-paid");
 
-//Open Cart Function
-function openCartSummary() {
-    const cartSummary = document.getElementById('cart-summary');
-    cartSummary.innerHTML = ''; // Clear previous items
+let cart = [];
 
+// Fetch Cart Items from Local Storage
+function fetchCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+// Display Cart Summary
+function displayCartSummary() {
+    cart = fetchCart();
     let totalCost = 0;
-    cart.forEach(item => {
-        const itemElement = document.createElement('p');
-        itemElement.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-        cartSummary.appendChild(itemElement);
-        totalCost += item.price;
-    });
 
-    document.getElementById('total-cost').textContent = totalCost.toFixed(2);
-    document.getElementById('checkout-modal').style.display = 'flex';
-}
-
-function closeModal() {
-    document.getElementById('checkout-modal').style.display = 'none';
-}
-
-document.getElementById('proceed-to-Purchasing and Shipping').addEventListener('click', () => {
-    // Hide cart summary and show shipping details
-    document.getElementById('checkout-modal').style.display = 'none';
-    document.getElementById('shipping-details').style.display = 'block';
-    
-});
-
-//Navigate back to Cart Page Function 
-function goBackToCart() {
-    document.getElementById('shipping-details').style.display = 'none';
-    document.getElementById('checkout-modal').style.display = 'flex';
-}
-
-document.getElementById('confirm-checkout').addEventListener('click', () => {
-    // Collect shipping details
-    const name = document.getElementById('name').value;
-    const address = document.getElementById('address').value;
-    const amountPaid = document.getElementById('amount-paid').value;
-
-    if (name && address && amountPaid) {
-        const shippingInfo = { name, address, amountPaid };
-        localStorage.setItem('shippingInfo', JSON.stringify(shippingInfo));
-        alert(`Thank you, ${name}! Your order has been confirmed.`); 
-        window.location.href = 'invoice.html';
-        
-        // Clear cart (e.g., from localStorage)
-        localStorage.removeItem('cart');
-        
-        // Hide shipping details and reset
-        document.getElementById('shipping-details').style.display = 'none';
+    if (cart.length === 0) {
+        cartSummary.innerHTML = "<p>Your cart is empty.</p>";
     } else {
-        alert("Please complete all fields before confirming.");
+        cart.forEach((product) => {
+            const item = document.createElement("div");
+            item.className = "cart-item";
+            item.innerHTML = `
+                <p><strong>${product.name}</strong> x ${product.number_of_copies} @ $${product.price.toFixed(2)}</p>
+                <p>Total: $${(product.number_of_copies * product.price).toFixed(2)}</p>
+            `;
+            cartSummary.appendChild(item);
+            totalCost += product.number_of_copies * product.price;
+        });
     }
-});
+
+    totalCostEl.textContent = totalCost.toFixed(2);
+}
+
+// Show Shipping Details Form
+function proceedToShipping() {
+    shippingDetails.style.display = "block";  // Show the shipping form
+}
+
+// Function to save shipping details to localStorage
+function saveShippingDetails() {
+    const shippingDetails = {
+        name: nameInput.value,
+        address: addressInput.value,
+        amountPaid: amountPaidInput.value
+    };
+
+    // Store the shipping details in localStorage as a JSON string
+    localStorage.setItem('shippingDetails', JSON.stringify(shippingDetails));
+}
+
+// Go Back to Cart Summary
+function goBackToCart() {
+    shippingDetails.style.display = "none";  // Hide the shipping form
+}
+
+// Confirm Checkout
+function confirmCheckout() {
+    if (shippingForm.checkValidity()) {
+        // Save shipping details before confirming
+        saveShippingDetails();
+        alert("Checkout confirmed. Thank you for your purchase!");
+        window.location.href = "invoice.html"; // Redirect to confirmation page
+    } else {
+        alert("Please fill out all shipping details.");
+    }
+}
+
+// Event Listeners
+proceedToPurchaseBtn.addEventListener("click", proceedToShipping);
+confirmCheckoutBtn.addEventListener("click", confirmCheckout);
+
+// Initialize cart summary on page load
+displayCartSummary();
