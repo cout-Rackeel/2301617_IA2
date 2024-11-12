@@ -1,4 +1,4 @@
-// Simulated cart data retrieval (e.g., from localStorage)
+// Simulated cart data retrieval (from localStorage)
 const cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve or initialize cart
 
 document.getElementById('checkout-btn').addEventListener('click', openCartSummary);
@@ -49,7 +49,7 @@ document.getElementById('confirm-checkout').addEventListener('click', () => {
         alert(`Thank you, ${name}! Your order has been confirmed.`); 
         window.location.href = 'invoice.html';
         
-        // Clear cart (e.g., from localStorage)
+        // Clear cart (from localStorage)
         localStorage.removeItem('cart');
         
         // Hide shipping details and reset

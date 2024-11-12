@@ -1,6 +1,40 @@
-var cart;
+var cart = fetchCart();
 var sub_total = 0;
 var summary_cont = document.getElementById("summary-cont");
+
+// Initialize the allInvoices array from localStorage or create an empty array
+var allInvoices = JSON.parse(localStorage.getItem("allInvoices")) || [];
+
+// Function to generate a unique invoice and store it in allInvoices
+function createInvoice(cart, subTotal, shippingInfo) {
+    const invoiceNumber = generateInvoiceNumber();
+    const tax = subTotal * 0.16;
+    const grandTotal = subTotal + tax;
+
+    // Create an invoice object
+    var invoice = {
+        invoiceNumber: invoiceNumber,
+        date: new Date().toLocaleDateString(),
+        products: cart,
+        subTotal: subTotal.toFixed(2),
+        tax: tax.toFixed(2),
+        grandTotal: grandTotal.toFixed(2),
+        shippingDetails: {
+            name: shippingInfo.name || "N/A",
+            address: shippingInfo.address || "N/A",
+            amountPaid: parseFloat(shippingInfo.amountPaid).toFixed(2) || "0.00"
+        }
+    };
+
+    // Add the new invoice to the allInvoices array
+    allInvoices.push(invoice);
+
+    // Save the updated allInvoices array to localStorage
+    localStorage.setItem("allInvoices", JSON.stringify(allInvoices));
+
+    return invoice;
+};
+
 
 //Display Current Date and Invoice #
 function generateInvoiceNumber() {
