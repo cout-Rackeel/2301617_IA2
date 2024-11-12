@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/login.css">
-  <link rel="stylesheet" href="./styles/style.css">
-  <link rel="stylesheet" href="./styles/chart.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script defer type="application/javascript" src="./scripts/chart.js"></script>
+  <script defer type="application/javascript" src="scripts/dashboard.js"></script>
   <style>
     .error { text-align: center; color: red; }
     .success { color: green; }
@@ -45,5 +44,17 @@
       <canvas id="ageGroupChart"></canvas>
     </div>
   </div>
+
+  <h1>Show all Invoices</h1>
+  <!-- Search Bar and Button -->
+  <input type="text" id="trnInput" placeholder="Enter TRN">
+  <button onclick="searchInvoices()">Search</button>
+
+  <!-- Section to display results -->
+  <div class="user-cards">
+    <div id="results"></div>
+  </div>
+
+
 </body>
 </html>

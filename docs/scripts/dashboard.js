@@ -81,3 +81,61 @@ function displayGenderChart() {
     displayGenderChart();
     displayAgeGroupChart();
   });
+
+  let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+  let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {};  
+
+  function searchInvoices() {
+    // Get the TRN value entered by the user
+    const searchTrn = document.getElementById('trnInput').value.trim();
+  
+  
+    // Clear previous results
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+  
+    // Check if TRN input is not empty
+    if (searchTrn) {
+        // Filter for matching invoices
+        const matchingInvoices = allInvoices.filter(invoice => invoice.trn === searchTrn);
+  
+        if (matchingInvoices.length > 0) {
+            // Display each matching invoice
+            matchingInvoices.forEach(invoice => {
+              const invoiceDiv = document.createElement('div');
+              invoiceDiv.innerHTML = `
+                  <p><strong>Invoice Number:</strong> ${invoice.invoiceNumber}</p>
+                  <p><strong>Date:</strong> ${invoice.date}</p>
+                  <p><strong>Products:</strong> ${JSON.stringify(invoice.products)}</p>
+                  <p><strong>Subtotal:</strong> $${invoice.subTotal}</p>
+                  <p><strong>Tax:</strong> $${invoice.tax}</p>
+                  <p><strong>Grand Total:</strong> $${invoice.grandTotal}</p>
+                  <p><strong>Shipping Details:</strong></p>
+                  <ul>
+                      <li><strong>Name:</strong> ${invoice.shippingDetails.name}</li>
+                      <li><strong>Address:</strong> ${invoice.shippingDetails.address}</li>
+                      <li><strong>Amount Paid:</strong> $${invoice.shippingDetails.amountPaid}</li>
+                  </ul>
+                  <hr>
+              `;
+                resultsDiv.appendChild(invoiceDiv);
+            });
+        } else {
+            // Display a message if no invoice is found
+            resultsDiv.innerHTML = `<p>No invoice found with TRN: ${searchTrn}</p>`;
+        }
+    } else {
+        // If no TRN is entered, display all invoices
+        allInvoices.forEach(invoice => {
+            const invoiceDiv = document.createElement('div');
+            invoiceDiv.innerHTML = `
+                <p><strong>Transaction Number:</strong> ${invoice.trn}</p>
+                <p><strong>Amount:</strong> ${invoice.amount}</p>
+                <p><strong>Date:</strong> ${invoice.date}</p>
+                <hr>
+            `;
+            resultsDiv.appendChild(invoiceDiv);
+        });
+    }
+  }
+  

@@ -1,9 +1,25 @@
-var cart = fetchCart();
-var sub_total = 0;
-var summary_cont = document.getElementById("summary-cont");
+const user = JSON.parse(localStorage.getItem("user_key"));
+
+if(!user) {
+    window.location.replace("./login.html");
+}else{
+    alert(JSON.stringify(user))
+}
+
+
+// Selecting the DOM elements
+const invoiceNumberDate = document.getElementById('invoice-number-Date');
+const trnElement = document.getElementById('trn');
+const shippingName = document.getElementById('shipping-name');
+const shippingAddress = document.getElementById('shipping-address');
+const shippingAmountPaid = document.getElementById('shipping-amount-paid');
+const summaryCont = document.getElementById('summary-cont');
+const sendEmailBtn = document.getElementById('send-email-btn'); // Ensure this button is correctly selected
+const emailNotification = document.getElementById('email-notification'); // Notification message
 
 // Initialize the allInvoices array from localStorage or create an empty array
-var allInvoices = JSON.parse(localStorage.getItem("allInvoices")) || [];
+let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+
 
 // Function to generate a unique invoice and store it in allInvoices
 function createInvoice(cart, subTotal, shippingInfo) {
@@ -11,8 +27,11 @@ function createInvoice(cart, subTotal, shippingInfo) {
     const tax = subTotal * 0.16;
     const grandTotal = subTotal + tax;
 
+    let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+
     // Create an invoice object
     var invoice = {
+        trn : user.trn,
         invoiceNumber: invoiceNumber,
         date: new Date().toLocaleDateString(),
         products: cart,
@@ -26,254 +45,165 @@ function createInvoice(cart, subTotal, shippingInfo) {
         }
     };
 
-    // Add the new invoice to the allInvoices array
-    allInvoices.push(invoice);
 
-    // Save the updated allInvoices array to localStorage
-    localStorage.setItem("allInvoices", JSON.stringify(allInvoices));
+    // Append the invoice to the user's invoice array in registrationData
+    const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
 
-    return invoice;
-};
-
-
-//Display Current Date and Invoice #
-function generateInvoiceNumber() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = ('0' + (date.getMonth() + 1)).slice(-2); 
-  const day = ('0' + date.getDate()).slice(-2); 
-  const randomNum = Math.floor(1000 + Math.random() * 9000);
-
-  return `${year}${month}${day}-${randomNum}`;
-}
-const invoiceNumber_Date = generateInvoiceNumber();
-document.getElementById('invoice-number-Date').textContent = invoiceNumber_Date;
-
-//calling the fetchcart function
-function fetchCart(){
-    var cart = localStorage.getItem("cart") === null ?  [] : JSON.parse(localStorage.getItem("cart")) ;
-    return cart;
-}
-//Fetch Shipping Information
-function fetchShippingDetails(){
-  var ship = localStorage.getItem("shippingInfo") === null?  []: JSON.parse(localStorage.getItem("shippingInfo"));
-  return ship;
-}
-// Display shipping information on the invoice
-const shippingInfo = fetchShippingDetails();
-if (shippingInfo) {
-    document.getElementById('shipping-name').textContent = shippingInfo.name || "N/A";
-    document.getElementById('shipping-address').textContent = shippingInfo.address || "N/A";
-    document.getElementById('shipping-amount-paid').textContent = parseFloat(shippingInfo.amountPaid).toFixed(2) || "0.00";
-}
-
-var invoice_cont = document.getElementById("invoice_cont");
-var cancel_cart_btn = document.getElementById("cancel_cart_btn");
-
-//add to cart function
-function addtoCart(product){
-    product.number_of_copies++;
-    localStorage.setItem("cart" , JSON.stringify(cart));
-    alert("Item Addded to Cart")
-    window.location.reload();
-}
-// Remove from cart function
-function removeFromCart(product, index)
-{
-    if(product.number_of_copies > 1){
-        product.number_of_copies--;
-        localStorage.setItem("cart" , JSON.stringify(cart));
-        alert("Item taken from Cart")
-        window.location.reload();
-    }else{
-        cart.splice(index , 1);
-        localStorage.setItem("cart" , JSON.stringify(cart));
-        alert("Item taken from Cart")
-        window.location.reload();
+    if (userIndex != -1) {
+        // Initialize invoices array if it doesn't exist
+        registrationData[userIndex].invoices = registrationData[userIndex].invoices || [];
+        registrationData[userIndex].invoices.push(invoice); // Add the invoice to the user’s invoices array
+        console.log(user.trn);
+    } else {
+        console.error("User not found in registrationData.");
     }
 
+    // Add the new invoice to the allInvoices array
+    allInvoices.push(invoice);
+    console.log(allInvoices);
 
-}
-function drawReceiptProducts(product , index){
-       //Create Card
-       var card = document.createElement("div");
-       card.className = "card";
-   
-       //Create Card Image
-       var open_bracket = "('";
-       var close_bracket ="')";
-       var card_img = document.createElement("div");
-       card_img.classList.add("card-img");
-       card_img.style.backgroundImage = "url" + open_bracket + product.img + close_bracket;
-       //Create Flex-1
-       var flex_one = document.createElement("div");
-       flex_one.classList.add("flex-1");
-   
-       //Create Flex-2
-         var flex_two = document.createElement("div");
-         flex_two.classList.add("flex-2");
-       
-       //Create titles
-       var product_name = document.createElement("h3");
-       product_name.classList.add("raleway-600");
-       product_name.textContent = product.name;
-   
-       //Create Span
-       var product_price = document.createElement("span");
-       product_price.classList.add("raleway-600");
-       product_price.textContent = "Price:$ " + product.price;
-   
-       flex_two.appendChild(product_name);
-       flex_two.appendChild(product_price);
-   
-       //Create Flex-3
-       var flex_three = document.createElement("div");
-         flex_three.className = "mt-1 flex-3";
-         
-       //Create Span
-       var quantity = document.createElement("span");
-       quantity.classList.add("raleway-400");
-       quantity.textContent = "Quantity: " + product.number_of_copies;
-   
-       var description = document.createElement("span");
-       description.classList.add("raleway-400");
-       description.textContent = "Description: " + product.description;
-   
-       flex_three.appendChild(quantity);
-       flex_three.appendChild(description);
-   
-        //Create Flex-4        
-        var flex_four = document.createElement("div");
-         flex_four.className = "mt-1 flex-4";
-   
-       //Create Add Button         
-       var add_btn = document.createElement("button");
-       add_btn.setAttribute('id', 'add_btn');
-       add_btn.className = "raleway-400 cta-btn";
-       add_btn.textContent = "Add";
-   
-       add_btn.addEventListener("click" ,(ev) => {
-          addtoCart(product);
-       });           
-       
-       //Create Cancel Button         
-       var cancel_btn = document.createElement("button");
-       cancel_btn.setAttribute('id', 'cancel_btn');
-       cancel_btn.className = "raleway-400 cta-btn";
-       cancel_btn.textContent = "Cancel";
-   
-       cancel_btn.addEventListener("click" ,(ev) => {
-          removeFromCart(product);
-       });       
-       
-       flex_four.appendChild(add_btn);
-       flex_four.appendChild(cancel_btn);
-                                                          
-         flex_one.appendChild(flex_two);
-         flex_one.appendChild(flex_three);
-         flex_one.appendChild(flex_four);
-   
-   
-       card.appendChild(card_img);
-       card.appendChild(flex_one);
-       invoice_cont.appendChild(card);
-       console.log("done")
+    // Save the updated allInvoices array to localStorage
+    localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
+
+    //save the updated person's invoice
+    localStorage.setItem("RegistrationData",JSON.stringify(registrationData));
+
+    return invoice;
 }
 
-function drawInvoice(product , index , summary_cont){
-    var total = 0;
+// Fetch shipping details from localStorage
+let shippingDetails = JSON.parse(localStorage.getItem('shippingDetails')) || {};
 
-    var div_section_one = document.createElement("div");
-    div_section_one.className = "flex-2 mt-05 px-1";
+// Fetch TRN from localStorage (if available)
+const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+let registeredUser = registrationData.find(user => user.trn);
 
-    var para_section_one = document.createElement("p");
-    para_section_one.textContent = product.name + "X" + product.number_of_copies + "@ $" + product.price;
-
-    var  para_section_dol_one = document.createElement("p");
-    para_section_dol_one.textContent = "$" +  (product.number_of_copies * product.price).toFixed(2);
-    total += (product.number_of_copies * product.price);
-    sub_total += total;
-
-    div_section_one.appendChild(para_section_one);
-    div_section_one.appendChild(para_section_dol_one);
-
-    //---------------------------------------------------
-    var heading = document.createElement("h3");
-    heading.className = "raleway-400 mt-05";
-    heading.innerText = "Taxes";
-
-    //---------------------------------------------------
-
-    summary_cont.append(div_section_one);
+// Set the TRN in the invoice if available
+if (registeredUser) {
+    // alert(JSON.stringify(registeredUser))
+    trnElement.textContent = registeredUser.trn;
+} else {
+    trnElement.textContent = "N/A"; // Default value if no TRN is found
 }
-   
-cart.forEach( (product , index) => {
-   drawReceiptProducts(product , index);
-   drawInvoice(product, index , summary_cont);
-});
 
-//Rest of Invoice form
-var div_section_two = document.createElement("div");
-div_section_two.className = "flex-2 mt-05 px-1 bordering" ;
+// Generate unique invoice number
+function generateInvoiceNumber() {
+    const date = new Date();
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+    const randomNumber = Math.floor(Math.random() * 10000);
+    return `${formattedDate}-${randomNumber}`;
+}
 
-var para_section_two = document.createElement("p");
-para_section_two.className = "raleway-400" ;
-para_section_two.textContent = "Subtotal";
+// Calculate taxes, subtotal, and total cost
+function calculateTotals(cart) {
+    let subtotal = 0;
+    let tax = 0;
+    let total = 0;
 
-var  para_section_dol_two = document.createElement("p");
-para_section_dol_two.className = "alert" ;
-para_section_dol_two.textContent = "$" +  sub_total.toFixed(2);
+    cart.forEach(product => {
+        let itemTotal = product.number_of_copies * product.price;
+        subtotal += itemTotal;
+    });
 
-div_section_two.appendChild(para_section_two);
-div_section_two.appendChild(para_section_dol_two);
+    tax = 0.16 * subtotal; // 16% tax
+    total = subtotal + tax;
 
-summary_cont.append(div_section_two);
+    return { subtotal, tax, total };
+}
 
-var heading = document.createElement("h3");
-heading.className = "raleway-400 mt-05";
-heading.innerText = "Taxes";
+// Fetch Cart Items from Local Storage
+function fetchCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
-summary_cont.append(heading);
+// Function to populate the invoice with the necessary details
+function displayInvoice() {
+    // Fetch cart items from localStorage
+    const cart = fetchCart();
 
-var div_section_three = document.createElement("div");
-div_section_three.className = "flex-2 mt-05 px-1";
+    // If no items in cart, display a message
+    if (cart.length === 0) {
+        summaryCont.innerHTML = "<p>No items in cart.</p>";
+        return; // Stop execution if no items in cart
+    }
 
-var para_section_three = document.createElement("p");
-para_section_three.textContent = "GCT @ 16%"
+    // Set company name and generate the invoice number
+    const companyName = "Your Company Name";
+    const dateOfInvoice = new Date().toLocaleDateString(); // Get the current date
+    invoiceNumberDate.textContent = generateInvoiceNumber();
 
-var  para_section_dol_three = document.createElement("p");
-para_section_dol_three.textContent = "$" +  (.16 * sub_total).toFixed(2);
+    // Set shipping details
+    shippingName.textContent = shippingDetails.name || "N/A";
+    shippingAddress.textContent = shippingDetails.address || "N/A";
+    shippingAmountPaid.textContent = shippingDetails.amountPaid || "0.00";
 
-div_section_three.appendChild(para_section_three);
-div_section_three.appendChild(para_section_dol_three);
+    // Set item summary
+    let { subtotal, tax, total } = calculateTotals(cart);
 
-summary_cont.append(div_section_three);
+    // Purchased Items Section
+    const itemsTitle = document.createElement("h3");
+    itemsTitle.textContent = "Purchased Items";
+    itemsTitle.style.textAlign = 'center';
+    summaryCont.appendChild(itemsTitle);
 
-var grand_total = document.createElement("h3");
-grand_total.className = "raleway-400 mt-05";
-grand_total.innerText = "Grand Total";
+    // Loop through cart items and display them
+    cart.forEach(product => {
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("invoice-item");
+        itemDiv.innerHTML = `
+            <p><strong>${product.name}</strong> (Quantity: ${product.number_of_copies})</p>
+            <p>Price: $${product.price.toFixed(2)} each</p>
+            <p>Discount: $0.00</p>  <!-- Add logic if discount applies -->
+            <p><strong>Total: $${(product.number_of_copies * product.price).toFixed(2)}</strong></p>
+        `;
+        itemDiv.style.textAlign = 'center';
+        itemDiv.style.margin = '0 auto'; 
+        itemDiv.style.maxWidth = '80%'; 
+        summaryCont.appendChild(itemDiv);
+    });
 
-var div_section_four = document.createElement("div");
-div_section_four.className = "flex-2 mt-05 px-1 bordering";
+    // Display subtotal, tax, and total
+    const totalsDiv = document.createElement("div");
+    totalsDiv.classList.add("totals");
+    totalsDiv.innerHTML = `
+        <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+        <p><strong>Taxes (16%):</strong> $${tax.toFixed(2)}</p>
+        <p><strong>Total Cost:</strong> $${total.toFixed(2)}</p>
+    `;
+    totalsDiv.style.textAlign = 'center';
+    totalsDiv.style.margin = '0 auto'; 
+    totalsDiv.style.maxWidth = '80%'; 
 
-var para_section_four = document.createElement("p");
-para_section_four.textContent = "Total"
+    summaryCont.appendChild(totalsDiv);
 
-var  para_section_dol_four = document.createElement("p");
-para_section_dol_four.textContent = "$" +  (sub_total + (.16 * sub_total)).toFixed(2);
+    createInvoice(cart, subtotal, shippingDetails);
+}
 
-div_section_four.appendChild(para_section_four);
-div_section_four.appendChild(para_section_dol_four);
+function sendInvoiceToEmail() {
+  // Ensure that emailNotification element exists
+  const emailNotification = document.getElementById("email-notification");
 
-grand_total.appendChild(div_section_four);
+  if (!emailNotification) {
+      console.error("Email notification element not found!");
+      return;
+  }
 
-summary_cont.append(grand_total);
+  // Show the email notification message
+  emailNotification.style.display = 'block';
 
+  // Hide the email notification message after 5 seconds
+  setTimeout(() => {
+      emailNotification.style.display = 'none';
+  }, 5000);  // The message will hide after 5 seconds
 
-cancel_cart_btn.addEventListener("click" , (e) => {
-   var response = window.confirm("Are you sure you want to empty your cart?");
-   if(response){
-    localStorage.removeItem("cart");
-    window.location.replace("/products.html");
-   }
-})
+  // Show an alert to the user
+  alert("The invoice has been sent to your email!");
+  window.location.href = "index.html";
+  localStorage.removeItem("cart"); // Clear cart after purchase
+}
+
+// Call the function to display the invoice
+displayInvoice();
+
+// Add event listener for the 'Send Invoice to Email' button
+document.getElementById("send-email-btn").addEventListener("click", sendInvoiceToEmail);
