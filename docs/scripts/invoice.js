@@ -1,3 +1,12 @@
+const user = JSON.parse(localStorage.getItem("user_key"));
+
+if(!user) {
+    window.location.replace("./login.html");
+}else{
+    alert(JSON.stringify(user))
+}
+
+
 // Selecting the DOM elements
 const invoiceNumberDate = document.getElementById('invoice-number-Date');
 const trnElement = document.getElementById('trn');
@@ -9,9 +18,7 @@ const sendEmailBtn = document.getElementById('send-email-btn'); // Ensure this b
 const emailNotification = document.getElementById('email-notification'); // Notification message
 
 // Initialize the allInvoices array from localStorage or create an empty array
-//let allInvoices = JSON.parse(localStorage.getItem("RegistrationData.invoices[]")) || [];
-let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {};
-let allInvoices = registrationData.invoices || [];
+let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
 
 
 // Function to generate a unique invoice and store it in allInvoices
@@ -20,8 +27,11 @@ function createInvoice(cart, subTotal, shippingInfo) {
     const tax = subTotal * 0.16;
     const grandTotal = subTotal + tax;
 
+    let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+
     // Create an invoice object
     var invoice = {
+        trn : user.trn,
         invoiceNumber: invoiceNumber,
         date: new Date().toLocaleDateString(),
         products: cart,
@@ -35,11 +45,28 @@ function createInvoice(cart, subTotal, shippingInfo) {
         }
     };
 
+
+    // Append the invoice to the user's invoice array in registrationData
+    const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
+
+    if (userIndex != -1) {
+        // Initialize invoices array if it doesn't exist
+        registrationData[userIndex].invoices = registrationData[userIndex].invoices || [];
+        registrationData[userIndex].invoices.push(invoice); // Add the invoice to the user’s invoices array
+        console.log(user.trn);
+    } else {
+        console.error("User not found in registrationData.");
+    }
+
     // Add the new invoice to the allInvoices array
     allInvoices.push(invoice);
+    console.log(allInvoices);
 
     // Save the updated allInvoices array to localStorage
-    localStorage.setItem("allInvoices", JSON.stringify(allInvoices));
+    localStorage.setItem("AllInvoices", JSON.stringify(allInvoices));
+
+    //save the updated person's invoice
+    localStorage.setItem("RegistrationData",JSON.stringify(registrationData));
 
     return invoice;
 }
@@ -48,11 +75,12 @@ function createInvoice(cart, subTotal, shippingInfo) {
 let shippingDetails = JSON.parse(localStorage.getItem('shippingDetails')) || {};
 
 // Fetch TRN from localStorage (if available)
-//const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
 let registeredUser = registrationData.find(user => user.trn);
 
 // Set the TRN in the invoice if available
 if (registeredUser) {
+    // alert(JSON.stringify(registeredUser))
     trnElement.textContent = registeredUser.trn;
 } else {
     trnElement.textContent = "N/A"; // Default value if no TRN is found
@@ -147,6 +175,8 @@ function displayInvoice() {
     totalsDiv.style.maxWidth = '80%'; 
 
     summaryCont.appendChild(totalsDiv);
+
+    createInvoice(cart, subtotal, shippingDetails);
 }
 
 function sendInvoiceToEmail() {

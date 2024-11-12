@@ -82,13 +82,12 @@ function displayGenderChart() {
     displayAgeGroupChart();
   });
 
+  let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+  let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {};  
+
   function searchInvoices() {
     // Get the TRN value entered by the user
     const searchTrn = document.getElementById('trnInput').value.trim();
-  
-    //const allInvoices = JSON.parse(localStorage.getItem('RegistrationData')) || [];
-    let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {};
-    let allInvoices = registrationData.invoices || [];
   
   
     // Clear previous results
