@@ -6,7 +6,7 @@
   <title>Keepiary - Dashboard Analytics Page</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/dashboard.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
   <script defer type="application/javascript" src="scripts/dashboard.js"></script>
   <style>
     .error { text-align: center; color: red; }
@@ -32,7 +32,7 @@
     </div>
 </header>
 
-  <h1 style="margin-top: 40px;">DASHBOARD</h1>
+  <!-- <h1 style="margin-top: 40px;">DASHBOARD</h1>
   <div class="chart-container">
     <h2>Gender Distribution</h2>
     <div class="chart-wrapper">
@@ -45,18 +45,31 @@
     <div class="chart-wrapper">
       <canvas id="ageGroupChart"></canvas>
     </div>
-  </div>
+  </div> -->
 
-  <h1>Show all Invoices</h1>
+  <div class="header">
+    <h1>User Frequency Analysis</h1>
+</div>
+
+<div id="frequencyCharts"></div>
+
+  <h1>Show all Invoices</h1><br>
   <!-- Search Bar and Button -->
+   
   <input type="text" id="trnInput" placeholder="Enter TRN">
-  <button onclick="searchInvoices()">Search</button>
+  <button class = "search-wrapper" onclick="searchInvoices()">Search</button>
 
   <!-- Section to display results -->
-  <div class="user-cards">
     <div id="results"></div>
-  </div>
 
+  <br><br><br>
+  <h1>Get User Invoices</h1><br>
+  <!-- Search Bar and Button -->
+  <input type="text" id="userTrn" placeholder="Enter TRN">
+  <button class = "search-wrapper" onclick="GetUserInvoices()" >Search</button>
 
+  <!-- Section to display results -->
+    <div id="userResults"></div>
+<br>
 </body>
 </html>
