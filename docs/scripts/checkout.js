@@ -1,3 +1,15 @@
+//Login Validation
+const user = JSON.parse(localStorage.getItem("user_key"));
+var registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
+
+// Tests if user is logged in
+if(!user) {
+    window.location.replace("./login.html");
+}
+
+
+
 // Selecting Elements
 const cartSummary = document.getElementById("cart-summary");
 const totalCostEl = document.getElementById("total-cost");
@@ -14,9 +26,11 @@ const amountPaidInput = document.getElementById("amount-paid");
 let cart = [];
 
 // Fetch Cart Items from Local Storage
-function fetchCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
+function fetchCart(){
+    var cart = registrationData[userIndex].cart.products || [];
+    return cart;
+  }
+  
 
 // Display Cart Summary
 function displayCartSummary() {
