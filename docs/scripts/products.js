@@ -14,7 +14,7 @@ function fetchProducts(){
         return allProducts
     }else{
         var productsArray = [
-            { id:"pd001", name:"Beeveil One", price:23.50, img:"./assets/images/beehive-veil-1.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.", copies:100, discount:0},
+            { id:"pd001", name:"Baby Halter Crop Top and Shorts", price:7150.00, img:"./assets/jev/croptopshorts.jpg", description:"7 ipsum dolor sit amet consectetur adipisicing elit.", copies:100, discount:0},
             { id:"pd002", name:"Beeveil Two", price:33.50, img:"./assets/images/beehive-veil-2.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.", copies:100, discount:0},
             { id:"pd003", name:"Beeveil Three", price:43.50, img:"./assets/images/beehive-veil-3.webp", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.", copies:100, discount:0},
             { id:"pd004", name:"Beehive", price:50.50, img:"./assets/images/beehive.jpg", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.", copies:100, discount:0},
