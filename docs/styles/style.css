@@ -115,7 +115,7 @@ body{
 .logo{
     width: 4.5em;
     height: 4.5em;
-    margin-right:100px;
+    margin-right:225px;
 }
 
 .link-list{
@@ -324,9 +324,6 @@ body{
 }
 
 
-
-
-
 .title-btn-cont
 {
     width: 100%;
@@ -336,6 +333,13 @@ body{
     padding: 0em 3em ;
     justify-content: space-between;
 }
+
+
+.hide{
+    display:none;
+}
+
+
 
 .px-1{
     padding: 0em 1em;

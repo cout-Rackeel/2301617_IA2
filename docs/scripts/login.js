@@ -1,13 +1,14 @@
 
-let loginForm = document.getElementById("login-form");
-let trnInput = document.getElementById("trn");
-let passwordInput = document.getElementById("password");
-let error = document.getElementById("error");
-let count = 0;
+var loginForm = document.getElementById("login-form");
+var trnInput = document.getElementById("trn");
+var passwordInput = document.getElementById("password");
+var error = document.getElementById("error");
+var login_btn = document.getElementById('login_btn');
+var logout_btn = document.getElementById('logout_btn');
+var count = 0;
 
 // Retrieve Registration Info
 const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
-let registeredUser = registrationData.find(user => user.trn && user.password);
 
 // Function to display error message
 function setError(message) {
@@ -27,8 +28,9 @@ function setSuccess() {
 loginForm.addEventListener('submit', e => {
     e.preventDefault(); // Prevent form submission to allow validation
 
-    let trnVal = trnInput.value.trim();
-    let passwordVal = passwordInput.value.trim();
+    var trnVal = trnInput.value.trim();
+    var passwordVal = passwordInput.value.trim();
+    var registeredUser = registrationData.find(user => user.trn == trnVal)
 
     // Check if the user has exceeded max attempts
     if (count === 2) {
@@ -44,9 +46,12 @@ loginForm.addEventListener('submit', e => {
     }
 
     // Validate credentials
-    if (!registeredUser || registeredUser.trn !== trnVal || registeredUser.password !== passwordVal) {
+    if (registeredUser.trn != trnVal || registeredUser.password != passwordVal) {
         count++;
         alert((3 - count) + " Attempt(s) Remaining");
+        console.log(registeredUser.trn);
+        console.log(registeredUser.password)
+        console.log(trnVal);    
         setError("Invalid Credentials");
     } 
     // Successful login

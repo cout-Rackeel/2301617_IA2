@@ -33,9 +33,10 @@
         <div class="nav-icons">
             <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
             <span style="font-size: 2em;">|</span>
-            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary"  id="login_btn">Login</a>
+            <a href=""  class="raleway-400 cta-btn secondary"  id="login_btn" onclick="localStorage.removeItem('user_key'); alert('Logged Out'); window.location.reload();">Logout</a>
         </div>
-    </header>g
+    </header>
 
 
     <div class="form-container">
@@ -55,7 +56,7 @@
             <div class="form-ctrl">
                 <label class="raleway-300" for="password">Password</label>
                 <input id="password" type="password" name="password" required>
-                <a class="raleway-300" style="font-size: .8em;" href="/reset-password.html" class="raleway-300">Reset Password</a>
+                <a class="raleway-300" style="font-size: .8em;" href="./reset-password.html" class="raleway-300">Reset Password</a>
             </div>
 
                      <!-- vi. Reset Password Link -->

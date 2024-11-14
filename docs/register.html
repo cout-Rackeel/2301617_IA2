@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keepiary - Login Page</title>
+    <title>Keepiary - Register Page</title>
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="./styles/register.css">
     <script defer type="application/javascript" src="./scripts/registration.js"></script>
     <style>
         .error{
@@ -33,50 +33,72 @@
         <div class="nav-icons">
             <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
             <span style="font-size: 2em;">|</span>
-            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary"  id="login_btn">Login</a>
+            <a href=""  class="raleway-400 cta-btn secondary"  id="login_btn" onclick="localStorage.removeItem('user_key'); alert('Logged Out'); window.location.reload();">Logout</a>
         </div>
     </header>
 
 
     <div class="form-container">
-        <h2 class="raleway-600">Register</h2>
-        <a href="./index.html"><img class="form-logo" src="./assets/images/keepiary-white.png" alt="" ></a>
+        <div style="margin: auto;">
+            <h2 class="raleway-600" style="text-align: center;">Register</h2>
+            <a href="./index.html"><img class="form-logo" src="./assets/images/keepiary-white.png" alt="" ></a>    
+        </div>
       
 
         <form id="registrationForm" method="post">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-        
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-        
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
-        
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
-              <option value="">Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-        
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-        
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        
-            <label for="trn">Tax Registration Number (TRN):</label>
-            <input type="text" id="trn" name="trn" pattern="\d{3}-\d{3}-\d{3}" required>
-        
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" minlength="8" required>
-        
-            <!-- Question vii. Register button and viii. Cancel button -->
-            <button type="Submit" id="registerBtn">Register</button>
-            <button type="reset">Cancel</button>
-    
+            <div class="form-ctrl">
+                <label for="firstName" class="raleway-300">First Name:</label>
+                <input class="raleway-300" type="text" id="firstName" name="firstName" required>
+            </div>
+
+            <div class="form-ctrl">
+                <label for="lastName" class="raleway-300">Last Name:</label>
+                <input class="raleway-300" type="text" id="lastName" name="lastName" required>
+            </div>
+
+            <div class="form-ctrl">
+                <label for="dob" class="raleway-300">Date of Birth:</label>
+                <input class="raleway-300" type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-ctrl">
+                <legend for="gender" class="raleway-300">Gender:</legend>
+                <select id="gender" name="gender" required>
+                  <option value="">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-ctrl">
+                <label for="phone"  class="raleway-300" >Phone Number:</label>
+                <input class="raleway-300" type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-ctrl">
+                <label for="email" class="raleway-300">Email:</label>
+                <input class="raleway-300" type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-ctrl">
+                <label for="trn" class="raleway-300" >Tax Registration Number (TRN):</label>
+                <input class="raleway-300" type="text" id="trn" name="trn"  required>
+            </div>
+
+            <div class="form-ctrl">
+                <label for="password" class="raleway-300">Password:</label>
+                <input class="raleway-300" type="password" id="password" name="password" minlength="8" required>
+            </div>
+
+            <!-- iv. Login Button -->
+            <div style="width: 100%; display: flex; justify-content: space-evenly; margin:4em 0em 2em 0em; gap:1rem;">
+                    <!-- Question vii. Register button and viii. Cancel button -->
+                <button type="submit" id="registerBtn" class="cta-btn">Register</button>
+                <button type="reset" class="cta-btn secondary">Cancel</button>
+            </div>
+
         </form>
     </div>
 
