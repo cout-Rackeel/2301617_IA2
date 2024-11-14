@@ -93,6 +93,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
 
   alert("Registration successful!");
   form.reset(); // Clear form after successful registration
+  window.location.replace("login.html");
 });
 
 // QUESTION viii: Event listener for cancel button to clear form data

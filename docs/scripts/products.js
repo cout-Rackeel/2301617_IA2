@@ -1,12 +1,10 @@
 const card_cont = document.getElementById("card-cont");
-const user_key = localStorage.getItem("user_key");
+const user = JSON.parse(localStorage.getItem("user_key"));
+var registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
 
-if(!user_key) {
+if(!user) {
     window.location.replace("./login.html");
 }
-
-
-
 
 function fetchProducts(){
     //Products Array List
@@ -38,8 +36,9 @@ var allProducts = fetchProducts();
 
 
 function addtoCart(product){
-    var cart = localStorage.getItem("cart") === null ?  [] : JSON.parse(localStorage.getItem("cart")) ;
-    var cart_product = {product_id: product.id , name:product.name, number_of_copies:1, price:product.price, img:product.img, description:product.description};
+    const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
+    var cart = registrationData[userIndex].cart.products || [];
+    var cart_product = {product_id: product.id , name:product.name, number_of_copies:1, price:product.price, img:product.img, description:product.description , discount:0};
 
 
     
@@ -54,14 +53,16 @@ function addtoCart(product){
             cart[productFound].number_of_copies++;
         }
     }
-    localStorage.setItem("cart" , JSON.stringify(cart));
+    registrationData[userIndex].cart.products  = cart;
+    localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
     alert("Item Addded to Cart")
 }
 
 function removeFromCart(product)
 {
-    var cart = localStorage.getItem("cart") === null ?  [] : JSON.parse(localStorage.getItem("cart")) ;
-    var cart_product = {product_id: product.id , name:product.name, number_of_copies:1, price:product.price, img:product.img, description:product.description};
+    const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
+    var cart = registrationData[userIndex].cart.products || [];
+    var cart_product = {product_id: product.id , name:product.name, number_of_copies:1, price:product.price, img:product.img, description:product.description , discount:0};
 
     
     if(cart.length == 0){
@@ -79,7 +80,8 @@ function removeFromCart(product)
             alert("Cart Updated");
         }
     }
-    localStorage.setItem("cart" , JSON.stringify(cart));
+    registrationData[userIndex].cart.products  = cart;
+    localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
 }
 
 function drawProductCards(product){

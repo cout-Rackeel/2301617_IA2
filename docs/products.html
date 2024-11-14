@@ -23,7 +23,8 @@
         <div class="nav-icons">
             <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
             <span style="font-size: 2em;">|</span>
-            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary"  id="login_btn">Login</a>
+            <a href=""  class="raleway-400 cta-btn secondary"  id="login_btn" onclick="localStorage.removeItem('user_key'); alert('Logged Out'); window.location.reload();">Logout</a>
         </div>
     </header>
 

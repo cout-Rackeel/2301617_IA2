@@ -13,14 +13,15 @@
                 <li><a href="./index.html" class="link">Home</a></li>
                 <li><a href="./products.html" class="link">Products</a></li>
                 <li><a href="./dashboard.html" class="link">Dashboard</a></li>
-                <li><a href="./about-us.html" class="link active">About Us</a></li>
+                <li><a href="./about-us.html" class="link ">About Us</a></li>
             </ul>
         </nav>
         <a href=".#"><img class="logo" src="./assets/images/keepiary-white.png" alt="" ></a>
         <div class="nav-icons">
             <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
             <span style="font-size: 2em;">|</span>
-            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary"  id="login_btn">Login</a>
+            <a href=""  class="raleway-400 cta-btn secondary"  id="login_btn" onclick="localStorage.removeItem('user_key'); alert('Logged Out'); window.location.reload();">Logout</a>
         </div>
     </header>
 

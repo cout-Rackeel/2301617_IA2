@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
+    <title>Keepiary - Checkout Page</title>
     <link rel="stylesheet" href="./styles/checkout.css">
     <link rel="stylesheet" href="./styles/style.css">
     <script src="./scripts/checkout.js" defer></script>
@@ -13,7 +13,7 @@
     <header class="navbar">
         <nav>
             <ul class="link-list">
-                <li><a href="./index.html" class="link active">Home</a></li>
+                <li><a href="./index.html" class="link">Home</a></li>
                 <li><a href="./products.html" class="link">Products</a></li>
                 <li><a href="./dashboard.html" class="link">Dashboard</a></li>
                 <li><a href="./about-us.html" class="link ">About Us</a></li>
@@ -23,7 +23,8 @@
         <div class="nav-icons">
             <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
             <span style="font-size: 2em;">|</span>
-            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary"  id="login_btn">Login</a>
+            <a href=""  class="raleway-400 cta-btn secondary"  id="login_btn" onclick="localStorage.removeItem('user_key'); alert('Logged Out'); window.location.reload();">Logout</a>
         </div>
     </header>
 

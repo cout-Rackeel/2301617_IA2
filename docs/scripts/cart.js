@@ -1,13 +1,26 @@
+const user = JSON.parse(localStorage.getItem("user_key"));
+var registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
+const checkoutBtn = document.getElementById("checkout_btn");
+
+// Tests if user is logged in
+if(!user) {
+    window.location.replace("./login.html");
+}
+
+
 var cart;
-var sub_total = 0;
+var subTotal = 0;
+var totalDiscount = 0;
 var summary_cont = document.getElementById("summary-cont");
 var div_section_one_empty = document.createElement("div");
 var products_section_empty = document.createElement("div");
 
 
+
 function fetchCart(){
-    var cart = localStorage.getItem("cart") === null ?  [] : JSON.parse(localStorage.getItem("cart")) ;
-    return cart;
+  var cart = registrationData[userIndex].cart.products || [];
+  return cart;
 }
 
 cart = fetchCart();
@@ -18,7 +31,8 @@ var cancel_cart_btn = document.getElementById("cancel_cart_btn");
 
 function addtoCart(product , value){
     product.number_of_copies = value;
-    localStorage.setItem("cart" , JSON.stringify(cart));
+    registrationData[userIndex].cart.products = cart;
+    localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
     window.location.reload();
 }
 
@@ -27,11 +41,11 @@ function removeFromCart(product, index)
   var response = window.confirm("Are you sure you want to empty your cart?");
     if(response){
       cart.splice(index , 1);
-      localStorage.setItem("cart" , JSON.stringify(cart));
+      registrationData[userIndex].cart.products  = cart;
+      localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
       alert("Item taken from Cart")
       window.location.reload();
     }
-   
 }
 
 function drawReceiptProducts(product , index){
@@ -87,7 +101,6 @@ function drawReceiptProducts(product , index){
     });           
 
     
-    
     //Create Cancel Button         
     var cancel_btn = document.createElement("button");
     cancel_btn.setAttribute('id', 'cancel_btn');
@@ -123,7 +136,7 @@ function drawInvoice(product ,index){
         <p class="mont-400 txt-1">${"$" +  (product.number_of_copies * product.price).toFixed(2)}</p>
     `;
     total += (product.number_of_copies * product.price);
-    sub_total += total;
+    subTotal += total;
     summary_cont.append(div_section_one);
 }
  
@@ -138,19 +151,19 @@ if(cart.length){
  div_section_two.innerHTML = `
   <div class="flex-2 mt-05 px-1 bordering">
     <p class="raleway-400">Subtotal</p>
-    <p class="alert mont-400 txt-1">${"$" + sub_total.toFixed(2)}</p>
+    <p class="alert mont-400 txt-1">${"$" + subTotal.toFixed(2)}</p>
   </div>
 
   <h3 class="raleway-400 mt-05">Taxes</h3>
 
   <div class="flex-2 mt-05 px-1">
     <p class="mont-400 txt-1">GCT @ 16%</p>
-    <p class="mont-400 txt-1">${"$" +  (.16 * sub_total).toFixed(2)}</p>
+    <p class="mont-400 txt-1">${"$" +  (.16 * subTotal).toFixed(2)}</p>
   </div>
 
   <div class="flex-2 mt-05 px-1 bordering">
     <p class="raleway-600">Grand Total</p>
-    <p class="alert mont-600">${"$" +  (sub_total + (.16 * sub_total)).toFixed(2)}</p>
+    <p class="alert mont-600">${"$" +  (subTotal + (.16 * subTotal)).toFixed(2)}</p>
   </div>
 `;
 summary_cont.append(div_section_two);
@@ -168,18 +181,29 @@ summary_cont.append(div_section_two);
 }
    
 
+//Transfers cart information 
+checkout_btn.addEventListener("click", (ev) => {
+  registrationData[userIndex].cart.totalDiscount = totalDiscount.toFixed(2);
+  registrationData[userIndex].cart.totalTax = (.16 * subTotal).toFixed(2);
+  registrationData[userIndex].cart.grandTotal = (subTotal + (.16 * subTotal)).toFixed(2);
+  localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
+})
+
+//Clears Cart
 cancel_cart_btn.addEventListener("click" , (e) => {
   if(cart.length){
     var response = window.confirm("Are you sure you want to empty your cart?");
     if(response){
-      localStorage.removeItem("cart");
+      registrationData[userIndex].cart.products = [];
+      localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
       window.location.replace("./products.html");
     }
   }else{
     alert("Your cart is already empty");
   }
    
-})
+});
+
 
 
 

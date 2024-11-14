@@ -1,12 +1,12 @@
 .form-container{
     margin: 100px auto;
-    width: 400px;
+    width: 600px;
     border: 1px solid lightgray;
     border-radius: 20px;
-    padding: 1em 0em;
+    padding: .5em 0em;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     padding: 3em;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.267);
@@ -15,7 +15,13 @@
 .form-ctrl{
     margin: 1.5em 0em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.form-ctrl>label, .form-ctrl>legend {
+    width: 50%;
 }
 
 .form-ctrl>input , .form-ctrl>select{
@@ -24,7 +30,7 @@
     border: .1px solid rgba(128, 128, 128, 0.567);
     border-radius: 5px;
     margin-top: .5em;
-    width: 300px;
+    width: 50%;
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -39,5 +45,9 @@
         border-bottom: 1px solid lightgray;
         padding: 1em;
     }
+
+
+
+
 
 
