@@ -184,6 +184,7 @@ summary_cont.append(div_section_two);
 //Transfers cart information 
 checkout_btn.addEventListener("click", (ev) => {
   registrationData[userIndex].cart.totalDiscount = totalDiscount.toFixed(2);
+  registrationData[userIndex].cart.subtotal = subTotal.toFixed(2);
   registrationData[userIndex].cart.totalTax = (.16 * subTotal).toFixed(2);
   registrationData[userIndex].cart.grandTotal = (subTotal + (.16 * subTotal)).toFixed(2);
   localStorage.setItem("RegistrationData" , JSON.stringify(registrationData));
