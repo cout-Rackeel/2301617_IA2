@@ -3,16 +3,6 @@ let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {
 
 //calculate age function
 function calculateAge(dob) {
-<<<<<<< HEAD
-    const birthDate = new Date(dob);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }   
-    return age;
-=======
   const birthDate = new Date(dob);
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
@@ -34,7 +24,6 @@ function ShowUserFrequency(){
       </div>
     `;
     return;
->>>>>>> origin/dijaune
   }
 
   // Process gender data
