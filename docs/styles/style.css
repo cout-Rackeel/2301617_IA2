@@ -366,5 +366,15 @@ body{
         margin-right: 0;
     }
 
+    .banner-style-1{
+        background-color: wheat;    
+        color: rgb(30, 14, 3) ;
+    }
+
+    .banner-style-2{
+        background-color: saddlebrown;    
+        color: white ;
+    }
+
 }
 
