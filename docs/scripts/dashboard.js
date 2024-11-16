@@ -279,9 +279,9 @@ function calculateSummary() {
   let totalProductsOrdered = 0;
 
   allInvoices.forEach(invoice => {
-      totalMoneyGenerated += invoice.grandTotal; // Add the grand total of the invoice
+      totalMoneyGenerated += parseFloat(invoice.grandTotal).toFixed(2); // Add the grand total of the invoice
       invoice.products.forEach(product => {
-          totalProductsOrdered += product.number_of_copies; // Count the total number of copies of products
+          totalProductsOrdered += parseFloat(product.number_of_copies); // Count the total number of copies of products
       });
   });
 
