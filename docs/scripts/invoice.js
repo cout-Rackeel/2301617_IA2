@@ -50,6 +50,7 @@ function createInvoice(cart, subTotal, shippingInfo) {
     const userIndex = registrationData.findIndex(userFound => userFound.trn == user.trn);
 
     if (userIndex != -1) {
+        alert("Please");
         // Initialize invoices array if it doesn't exist
         registrationData[userIndex].invoices = registrationData[userIndex].invoices || [];
         registrationData[userIndex].invoices.push(invoice); // Add the invoice to the user’s invoices array

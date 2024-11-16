@@ -6,7 +6,7 @@
   <title>Keepiary - Dashboard Analytics Page</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/dashboard.css">
-  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script defer type="application/javascript" src="scripts/dashboard.js"></script>
   <style>
     .error { text-align: center; color: red; }
@@ -32,44 +32,68 @@
     </div>
 </header>
 
-  <!-- <h1 style="margin-top: 40px;">DASHBOARD</h1>
-  <div class="chart-container">
-    <h2>Gender Distribution</h2>
-    <div class="chart-wrapper">
-      <canvas id="genderChart"></canvas>
+<br>
+  <div class="dashboard-grid">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Total Registered Users</h3>
+            <i class="fas fa-users text-info"></i>
+        </div>
+        <div class="card-value " id = "totUsers"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Total Earnt</h3>
+            <i class="fas fa-dollar-sign text-success"></i>
+        </div>
+        <div class="card-value" id = "totEarnt"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Total Orders</h3>
+            <i class="fas fa-shopping-cart text-warning"></i>
+        </div>
+        <div class="card-value" id = "totOrders"></div>
     </div>
   </div>
 
-  <div class="chart-container">
-    <h2>Age Group Distribution</h2>
-    <div class="chart-wrapper">
-      <canvas id="ageGroupChart"></canvas>
+  <div class="charts">
+    <div class="chart-card">
+        <!-- <div class="chart-title">Gender Chart</div> -->
+        <div id="genderChart"></div>
     </div>
-  </div> -->
-
-  <div class="header">
-    <h1>User Frequency Analysis</h1>
+    <div class="chart-card">
+        <!-- <div class="chart-title">Age Chart</div> -->
+        <div id="ageChart"></div>
+    </div>
 </div>
 
-<div id="frequencyCharts"></div>
+  <div class = "invoices">
+    <div class = "Invoices">
+      <h1>Show all Invoices</h1><br>
+      <!-- Search Bar and Button -->
+      
+      <input type="text" id="trnInput" placeholder="Enter TRN">
+      <button class = "search-wrapper" onclick="searchInvoices()">Search</button>
 
-  <h1>Show all Invoices</h1><br>
-  <!-- Search Bar and Button -->
-   
-  <input type="text" id="trnInput" placeholder="Enter TRN">
-  <button class = "search-wrapper" onclick="searchInvoices()">Search</button>
+      <!-- Section to display results -->
+      <div id="results"></div>
+    </div>
 
-  <!-- Section to display results -->
-    <div id="results"></div>
+    <div class = "Invoices">
+      <h1>Get User Invoices</h1><br>
+      <!-- Search Bar and Button -->
+      <input type="text" id="userTrn" placeholder="Enter TRN">
+      <button class = "search-wrapper" onclick="GetUserInvoices()" >Search</button>
 
-  <br><br><br>
-  <h1>Get User Invoices</h1><br>
-  <!-- Search Bar and Button -->
-  <input type="text" id="userTrn" placeholder="Enter TRN">
-  <button class = "search-wrapper" onclick="GetUserInvoices()" >Search</button>
+      <!-- Section to display results -->
+      <div id="userResults"></div>
+    </div>
 
-  <!-- Section to display results -->
-    <div id="userResults"></div>
+  </div>
 <br>
+
 </body>
 </html>
