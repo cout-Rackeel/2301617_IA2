@@ -1,7 +1,7 @@
 .form-container{
     margin: 100px auto;
     width: 400px;
-    border: 1px solid lightgray;
+    border: 1px solid brown;
     border-radius: 20px;
     padding: 1em 0em;
     display: flex;
@@ -10,6 +10,7 @@
     justify-content: center;
     padding: 3em;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.267);
+    background-color: #E3CBA8; 
 }
 
 .form-ctrl{
@@ -21,7 +22,7 @@
 .form-ctrl>input , .form-ctrl>select{
     padding: .25em 2em;
     outline:  none;
-    border: .1px solid rgba(128, 128, 128, 0.567);
+    border: .1px solid #4e3b31(128, 128, 128, 0.567);
     border-radius: 5px;
     margin-top: .5em;
     width: 300px;
@@ -40,4 +41,13 @@
         padding: 1em;
     }
 
+    #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
 
