@@ -9,7 +9,8 @@
 }
 
 .card{
-    border: .1px solid lightgray;
+    background-color: white;
+    border: .1px solid #4e3b31;
     border-radius: 5px;
     padding: 2em .5em;
     transition: all linear 100ms 0ms;
@@ -96,24 +97,68 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.285);
 }
 
-video{
+
+.snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1 ;
-    margin: 2em 0em;
+    pointer-events: none; /* Allow clicks to pass through */
 }
 
-@media only screen and (max-width: 600px) {
-    #card-cont{
-    grid-template-columns: 1fr;
-    }
+.snowflake {
+    position: absolute;
+    top: -10%; /* Start above the section */
+    font-size: 1.5em; /* Size of the snowflake */
+    opacity: 0.8;
+    animation: fall linear infinite; /* Falling animation */
+}
 
-    video{
-        margin: 0px auto;
-        width: 100%;
-        height: 80%;
-        z-index: -1 ;
-        margin: 2em 0em;
+/* Define the keyframes for the snowflake falling animation */
+@keyframes fall {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        transform: translateX(20px) translateY(100vh); /* End at the bottom */
     }
 }
+
+/* Create a delay for each snowflake for variation */
+.snowflake:nth-child(1) {
+    left: 10%; /* Random position */
+    animation-duration: 5s; /* Duration of the fall */
+    animation-delay: 0s; /* No delay */
+    color: white; 
+}
+
+.snowflake:nth-child(2) {
+    left: 25%;
+    animation-duration: 6s;
+    animation-delay: 1s; /* Delay for staggered effect */
+    color: yellow; 
+}
+
+.snowflake:nth-child(3) {
+    left: 40%;
+    animation-duration: 7s;
+    animation-delay: 2s;
+    color: green; 
+}
+
+.snowflake:nth-child(4) {
+    left: 55%;
+    animation-duration: 5.5s;
+    animation-delay: 3s;
+    color: #FFD700; /* Snowflake color (Gold) */
+}
+
+.snowflake:nth-child(5) {
+    left: 70%;
+    animation-duration: 6.5s;
+    animation-delay: 4s;
+    color: red; 
+}
+
 
