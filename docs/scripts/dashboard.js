@@ -55,7 +55,7 @@ function ShowUserFrequency(){
   // Create HTML for gender chart
   let genderHTML = `
     <div class="chart-container">
-      <h2>User Distribution by Gender</h2>
+      <h2>Gender Distribution Chart</h2>
     <div class="chart">
   `;
 
@@ -67,7 +67,7 @@ function ShowUserFrequency(){
           <div class="bar-container">
               <img src="./assets/images/blue.jpeg" class="bar-image" style="width: ${percentage}%" alt="bar">
           </div>
-          <span class="count">${count} users</span>
+          <span class="count">${count}</span>
       </div>
     `;
   }
@@ -80,7 +80,7 @@ function ShowUserFrequency(){
   // Create HTML for age chart
   let ageHTML = `
     <div class="chart-container">
-      <h2>User Distribution by Age Group</h2>
+      <h2>Age Distribution Chart</h2>
     <div class="chart">
   `;
 
@@ -92,7 +92,7 @@ function ShowUserFrequency(){
         <div class="bar-container">
           <img src="./assets/images/blue.jpeg" class="bar-image" style="width: ${percentage}%" alt="bar">
         </div>
-          <span class="count">${count} users</span>
+          <span class="count">${count}</span>
         </div>
     `;
   }
@@ -103,11 +103,12 @@ function ShowUserFrequency(){
   `;
 
   // Update the container
-  document.getElementById('frequencyCharts').innerHTML = genderHTML + ageHTML;
+  document.getElementById('genderChart').innerHTML = genderHTML;
+  document.getElementById("ageChart").innerHTML = ageHTML;
 }
 
 // Call the function when the page loads
-window.onload = ShowUserFrequency;
+// window.onload = ShowUserFrequency;
 
 //function to search for user's invoice from the allInvoices array
 function searchInvoices() {
@@ -265,4 +266,35 @@ function GetUserInvoices() {
       alert("No trn entered!");
   }
 }
+
+function calculateSummary() {
+  const registrationData = JSON.parse(localStorage.getItem("RegistrationData") || "[]");
+  const allInvoices = JSON.parse(localStorage.getItem("AllInvoices") || "[]");
+
+  // Total number of users
+  const totalUsers = registrationData.length;
+
+  // Total money generated and total products ordered
+  let totalMoneyGenerated = parseFloat(0);
+  let totalProductsOrdered = 0;
+
+  allInvoices.forEach(invoice => {
+      totalMoneyGenerated += parseFloat(invoice.grandTotal).toFixed(2); // Add the grand total of the invoice
+      invoice.products.forEach(product => {
+          totalProductsOrdered += parseFloat(product.number_of_copies); // Count the total number of copies of products
+      });
+  });
+
+  document.getElementById('totUsers').innerHTML = totalUsers;
+  document.getElementById('totEarnt').innerHTML = `$${totalMoneyGenerated}`;
+  document.getElementById('totOrders').innerHTML = totalProductsOrdered;
+
+  // Display the summary in the specified container
   
+}
+
+// Call when page loads
+window.onload = () => {
+  ShowUserFrequency();
+  calculateSummary();
+};

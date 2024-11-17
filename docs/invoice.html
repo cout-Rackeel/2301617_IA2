@@ -32,12 +32,12 @@
         <div class="nav-icons">
             <a href="./cart.html" class="material-symbols-outlined shopping_cart" id="cart_icon">shopping_cart</a>
             <span style="font-size: 2em;">|</span>
-            <a href="./login.html"  class="raleway-400 cta-btn secondary"  id="login_btn">Login</a>
-            <a href=""  class="raleway-400 cta-btn secondary"  id="login_btn" onclick="localStorage.removeItem('user_key'); alert('Logged Out'); window.location.reload();">Logout</a>
+            <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
         </div>
     </header>
 
-    <div class="divider mt-1">       
+
+    <div class="divider mt-1">      
         <div style="width: 100%;">
                 </div>
                 <div id="invoice_cont"></div>
@@ -56,20 +56,22 @@
                 <p><strong>Address:</strong> <span id="shipping-address"></span></p>
                 <p><strong>Amount Paid:</strong> $<span id="shipping-amount-paid"></span></p>
             </div>
-        
-            <div class="overflow" id="summary-cont"> 
+       
+            <div class="overflow" id="summary-cont">
+
+
 
 
             </div>    
-        <!-- Button to trigger the email notification -->
-        <div style="text-align: center; margin-top: 20px;">
-            <button id="send-email-btn">Send Invoice to Email</button>
-        </div>
-        <!-- Email notification message -->
-           <!-- Email notification message that will be displayed when the invoice is "sent" -->
-          <div id="email-notification" style="display: none;">The invoice has been sent to your email!</div>
-         </div>
-    </div>
-    
+       <!-- Button to trigger the email notification -->
+<div style="text-align: center; margin-top: 20px;">
+    <button id="send-email-btn">Send Invoice to Email</button>
+  </div>
+  
+  <!-- Email notification message that will be displayed when the invoice is "sent" -->
+  <div id="email-notification" style="display: none;">The invoice has been sent to your email!</div>
+  
+   
 </body>
 </html>
+
