@@ -275,7 +275,7 @@ function calculateSummary() {
   const totalUsers = registrationData.length;
 
   // Total money generated and total products ordered
-  let totalMoneyGenerated = 0;
+  let totalMoneyGenerated = parseFloat(0);
   let totalProductsOrdered = 0;
 
   allInvoices.forEach(invoice => {
