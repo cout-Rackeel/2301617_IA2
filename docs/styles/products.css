@@ -9,7 +9,8 @@
 }
 
 .card{
-    border: .1px solid lightgray;
+    background-color: white;
+    border: .1px inset #4e3b31;
     border-radius: 5px;
     padding: 2em .5em;
     transition: all linear 100ms 0ms;

@@ -265,4 +265,35 @@ function GetUserInvoices() {
       alert("No trn entered!");
   }
 }
+
+function calculateSummary() {
+  const registrationData = JSON.parse(localStorage.getItem("RegistrationData") || "[]");
+  const allInvoices = JSON.parse(localStorage.getItem("AllInvoices") || "[]");
+
+  // Total number of users
+  const totalUsers = registrationData.length;
+
+  // Total money generated and total products ordered
+  let totalMoneyGenerated = parseFloat(0);
+  let totalProductsOrdered = parseInt(0);
+
+  allInvoices.forEach(invoice => {
+      totalMoneyGenerated += parseFloat(invoice.grandTotal).toFixed(2); // Add the grand total of the invoice
+      invoice.products.forEach(product => {
+          totalProductsOrdered += parseFloat(product.number_of_copies); // Count the total number of copies of products
+      });
+  });
+
+  document.getElementById('totUsers').innerHTML = totalUsers;
+  document.getElementById('totEarnt').innerHTML = `$${totalMoneyGenerated}`;
+  document.getElementById('totOrders').innerHTML = totalProductsOrdered;
+
+  // Display the summary in the specified container
   
+}
+
+// Call when page loads
+window.onload = () => {
+  ShowUserFrequency();
+  calculateSummary();
+};
