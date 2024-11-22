@@ -71,7 +71,7 @@
     </div>
 </div>
 
-  <div style="display: none;">
+  <div class="mobile">
     <div class = "invoices">
       <div class = "Invoices">
         <h1>Show all Invoices</h1><br>
@@ -100,7 +100,26 @@
   <div class="table-cont">
 
     <div class="function-cont">
-        <span class="raleway-900" style="margin: 0px 10px; font-size: 1.5em;">Invoices</span>
+      <form action="#" id="table_form" method="post">
+        <span class="raleway-900" style="margin: 0px 10px; font-size: 1.5em;">
+          <span style="position: relative;">Invoices</span>
+
+          <span style="position: relative; top: -2px; left: 5px;">
+            <select name="" id="search_options" style="padding: 4px;" class="raleway-400">
+              <option value="allInvoices" selected>All Invoices</option>
+              <option value="userInvoices">User Invoices</option>
+            </select>
+
+            <span style="position: relative; width: 100%;">
+              <input type="text" name="search_value" id="search_value" placeholder="Enter TRN to Search" style="width: 200px; padding:4px; border-radius: px; outline: none;" class="raleway-400">
+              <button type="submit" class="material-symbols-outlined search" style="outline: none; border: none; position: absolute; bottom: 0px; left: 175px; cursor: pointer; background-color: white;">
+                search
+              </button>
+            </span>
+
+          </span>
+        </span>
+      </form>
     </div>
 
     <table class="table" align="left">
@@ -110,36 +129,18 @@
           <th>TRN</th>
           <th>Date</th>
           <th>Products</th>
+          <th>Shipping Name</th>
+          <th>Shipping Address</th>
+          <th>Total Discount</th>
           <th>Total Tax</th>
           <th>Sub Total</th>
           <th>Grand Total</th>
-          <th>Action</th>
+          <th>Cash Tendered</th>
         </tr>
       </thead>
   
-      <tbody>
-          <tr>
-            <td>Blank</td>
-            <td>Blank</td>
-            <td>Blank</td>
-            <td>Blank</td>
-            <td>Blank</td>
-            <td>Blank</td>
-            <td>Blank</td>
-            <td>Blank</td>
-        </tr>
-
-        <tr>
-          <td>Blank</td>
-          <td>Blank</td>
-          <td>Blank</td>
-          <td>Blank</td>
-          <td>Blank</td>
-          <td>Blank</td>
-          <td>Blank</td>
-          <td>Blank</td>
-        </tr>
-   
+      <tbody id="tbody">
+        <!-- DYNAMIC CONTENT HERE -->
       </tbody>
     </table>
   </div>

@@ -62,3 +62,7 @@ loginForm.addEventListener('submit', e => {
         window.location.replace("products.html");
     }
 });
+
+function clearForm(){
+    loginForm.reset();
+}

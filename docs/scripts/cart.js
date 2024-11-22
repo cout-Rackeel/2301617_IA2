@@ -68,7 +68,7 @@ function drawReceiptProducts(product , index){
 
         <div class="mt-1 flex-3">
           <span class="mont-400">Quantity: ${product.number_of_copies}</span>
-          <span class="raleway-400">Description: ${product.description}</span>
+          <span class="raleway-400" style="line-height:1.75">Description: ${product.description}</span>
         </div>
     `;
 

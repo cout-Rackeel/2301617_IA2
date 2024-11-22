@@ -1,11 +1,24 @@
 
-.divider{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2em;
-    
+.outer-cont{
+    width: 50%;
+    margin: 3em auto;
+    height: fit-content; 
+    background-color: white; 
+    border-top: 10px inset rgb(249, 116, 21); 
+    padding: 0em 2em; 
 }
+
+.invoice-img-container{
+    position: relative;
+    width: 250px;
+    height: 250px; 
+    top: -10px; 
+    border-top: 10px inset rgb(249, 116, 21);
+}
+
+
+
+
 /* Company name container at the top */
 .invoices-container {
     text-align: center; /* Center the company name */

@@ -48,31 +48,34 @@
         </div>
     </header>
 
-<div id="checkout-summary" class="checkout-summary">
-        <h2>Shopping Cart Summary</h2>
-        <div id="cart-summary"></div>
-        <p><strong>Total: $<span id="total-cost">0</span></strong></p>
-        <button id="proceed-to-Purchasing and Shipping" class="cta-btn raleway-600">Proceed to Purchasing and Shipping</button>
-    </div>
+    <div class="page-cont">
+
+        <div id="checkout-summary" class="checkout-container">
+            <h2 class="raleway-900">Shopping Cart Summary</h2>
+            <div id="cart-summary"></div>
+            <p class="raleway-600"><strong>Total: $<span id="total-cost">0</span></strong></p>
+            <button id="proceed-to-Purchasing and Shipping" class="cta-btn raleway-600">Proceed to Purchasing and Shipping</button>
+        </div>
+
+        <!-- Shipping Details Form -->
+        <div id="shipping-details" class="shipping-details" style="display: none;">
+            <h2 class="raleway-900">Shipping Details</h2>
+            <form id="shipping-form">
+                <label for="name" class="raleway-400">Customer Name:</label>
+                <input type="text" id="name" required class="raleway-400"><br>
+
+                <label for="address" class="raleway-400">Shipping Address:</label>
+                <input type="text" id="address" required class="raleway-400"><br>
+
+                <label for="amount-paid" class="raleway-400">Amount Paid:</label>
+                <input type="text" id="amount-paid" required class="raleway-400"><br>
+            </form>
+            <button id="confirm-checkout" class="raleway-400 cta-btn" style="background-color: #4CAF50;">Confirm</button>
+            <button id="goBackToCart" type="button" onclick="goBackToCart()">Cancel</button>
+        </div>
+
+
 </div>
-
-<!-- Shipping Details Form -->
-<div id="shipping-details" class="shipping-details" style="display: none;">
-    <h3>Shipping Details</h3>
-    <form id="shipping-form">
-        <label for="name">Customer Name:</label>
-        <input type="text" id="name" required><br>
-
-        <label for="address">Shipping Address:</label>
-        <input type="text" id="address" required><br>
-
-        <label for="amount-paid">Amount Paid:</label>
-        <input type="text" id="amount-paid" required><br>
-    </form>
-    <button id="confirm-checkout">Confirm</button>
-    <button type="button" onclick="goBackToCart()">Cancel</button>
-</div>
-
 
 </body>
 </html>

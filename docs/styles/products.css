@@ -9,13 +9,11 @@
 }
 
 .card{
-    background-color: white;
-    border: .1px solid #4e3b31;
+    background-color: rgba(255, 255, 255, 0.564);
+    border: 10px solid none;
     border-radius: 5px;
-    padding: 2em .5em;
-    transition: all linear 100ms 0ms;
-    background-color: white;
-    
+    transition: all linear 100ms 0ms;  
+    padding: 2em;
 }
 
 .card-img{
@@ -24,9 +22,8 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat; 
-    /* background-image: url("../assets/images/beehive-veil-2.webp"); */
-    background-color: white;
-    border-radius: 5px;
+    background-color: #FAEBC0;
+    border-radius: 5px 5px 0px 0px;
     margin-bottom: .75em;
 }
 
@@ -46,6 +43,9 @@
     font-style: normal;
     line-height: 1.5;
     font-size: .9em;
+    text-overflow: ellipsis " [..]";
+    word-break:none;
+    min-height: 100px;
 }
 
 .card-title{
@@ -62,7 +62,7 @@
     border-radius: 2em;
     text-decoration: none;
     font-size: .9em;
-    background-color: var(--pri-clr-dark);
+    background-color: var(--pri-clr-orange);
     color: white;
     border: .5px solid transparent; 
     cursor: pointer;
@@ -96,6 +96,7 @@
 
 .card:hover{
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.285);
+    background-color: #fff;
 }
 
 
@@ -161,5 +162,15 @@
     animation-delay: 4s;
     color: red; 
 }
+
+@media (max-width: 800px) {
+    #card-cont{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3em;
+        padding: 0em 3em;
+    }
+    
+  }
 
 

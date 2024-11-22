@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart_search");
+
+
 :root{
     --pri-clr-dark : #4e3b31;
-    --pri-clr-light : black;
-    --pri-clr-yellow: saddlebrown;
+    --pri-clr-light :  #FAF3E0;
+    --pri-clr-orange:  rgb(176, 89, 26);
+    --pri-clr-main:  rgb(17, 7, 0);
 }
 
 
@@ -13,7 +16,7 @@ html {
 
 body{
     position: relative;
-    background-color:hsl(43, 100%, 99%);
+    background-color: var(--pri-clr-light); 
 }
 
 
@@ -115,6 +118,9 @@ body{
     line-height: 1.3em;
 }
 
+.mt-05{
+    margin-top: 1em;
+}
 .mt-1{
     margin-top: 2em;
 }
@@ -138,8 +144,8 @@ body{
     position: relative;
     z-index: 2;
     overflow-x: hidden;
-    /* border-bottom: 1px solid lightgray; */
-    /* background-color: white; */
+    border-bottom: 1px solid lightgray;
+    background-color: white;
 }
 
 .logo{
@@ -188,7 +194,7 @@ body{
 
 .link::after {
     content: '';
-    background-color: var(--pri-clr-yellow  );
+    background-color: var(--pri-clr-orange  );
     display: block;
     position: absolute;
     width:0%;
@@ -209,7 +215,7 @@ body{
     border-radius: 2em;
     text-decoration: none;
     font-size: .8em;
-    background-color: var(--pri-clr-dark);
+    background-color: var(--pri-clr-orange);
     color: white;
     border: .5px solid transparent; 
     cursor: pointer;
@@ -307,7 +313,7 @@ body{
 
 .statement{
     margin-bottom: 20px;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid var(--pri-clr-orange);
     padding-bottom: 1em;
 }
 
@@ -338,7 +344,7 @@ body{
     width: 40%;
     background-color:  hsl(39, 77%, 95%);
     border-bottom: 1em inset var(--pri-clr-main);
-    margin: 0em 3em;
+    margin: 1em 3em;
     border: 0px solid saddlebrown;
     border-radius: 5px;
     box-shadow: 1px 1px 10px inset rgba(0, 0, 0, 0.258);
@@ -356,8 +362,6 @@ body{
     width: 100%;
     line-height: 1.3em;
 }
-
-
 
 .title-btn-cont
 {

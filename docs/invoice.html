@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/invoice.css">
     <script src="./scripts/invoice.js" defer></script>
-    <style>
-        body {
-            background-color: #E3CBA8; 
-            margin: 0;
-        }
-
-        header {
-            background-color: white; 
-        }
-    </style>
 </head>
 <body>
     <header class="navbar">
@@ -35,43 +25,58 @@
             <a href="./login.html"  class="raleway-400 cta-btn secondary">Login</a>
         </div>
     </header>
+    
+    <div class=" outer-cont">      
+        <div style="width: 100%; height: 280px; border-bottom: 1px solid rgb(184, 79, 4); position: relative;" >
+            <div class="invoice-img-container">
+                <img class="logo" src="./assets/jev/crochetlogo.png" alt="" style="width: 100%; height: 100%;">
+                <h1 class="raleway-900" style="position: absolute; bottom: 20px; left: 43px; letter-spacing: 1.5px; line-height: 1.5;">Invoice</h1>
+            </div>
+            <p class="raleway-400" style="text-align: right; color: rgb(96, 96, 96);">Invoice Number and Date: <span id="invoice-number-Date" class="mont-400"></span></p>
+        </div>
+        <div style=" display: flex; width: 100%; height: 100px; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(184, 79, 4); position: relative;" >
+            <p class="raleway-400" style="text-align: right; color: rgb(96, 96, 96);">Company Name: <span class="raleway-600" style="color: black;"><b>The Crochet Cove</b></span></p>
+            <p class="raleway-400" style="text-align: right; color: rgb(96, 96, 96);">Date: <span class="mont-600" style="color: black;">2024-11-22</span></p>
+        </div>
 
+        <div>
+           
+            <div class="mt-05" style=" display: flex; width: 100%; height: 100px; align-items: center; justify-content: space-between;">
+                <h2 class="raleway-600 ">Shipping Information</h2> 
+                <p class="raleway-400">Customer TRN: <strong><span id="trn" class="mont-600"></span></strong></p>
+            </div>
+          
 
-    <div class="divider mt-1">      
-        <div style="width: 100%;">
+           <div class="mt-1" style=" display: flex; width: 100%; height: 100px;  justify-content: space-between; border-bottom: 1px solid rgb(184, 79, 4); position: relative;">
+                <div class="raleway-600" style="text-align: left; color: rgba(230, 101, 10, 0.99);">
+                    From: <br> 
+                    <span class="raleway-600" style="color: black;"><b>The Crochet Cove</b></span>
                 </div>
-                <div id="invoice_cont"></div>
-            </div>
-            <div class="invoices-container">
-                <h1 class="invoice-heading"> <b>Invoice</b></h1> </br>
-            </div>
-            <div class="invoice-info">
-                <p><strong>Company Name </strong> </p>
-                <p><strong>Invoice Number and Date: </br></strong> <span id="invoice-number-Date"></span></p>
-                <p><strong>TRN:</strong> <span id="trn"></span></p>
-            </div>
-            <div class="invoice-container">
-                <h3>Shipping Information</h3>
-                <p><strong>Name:</strong> <span id="shipping-name"></span></p>
-                <p><strong>Address:</strong> <span id="shipping-address"></span></p>
-                <p><strong>Amount Paid:</strong> $<span id="shipping-amount-paid"></span></p>
-            </div>
-       
-            <div class="overflow" id="summary-cont">
 
+                <div  style="display: flex; flex-direction: column; text-align: right; ">
+                    <p style="color: rgba(230, 101, 10, 0.99);" class="raleway-600">To:</p> 
+                    <span>
+                        <p><strong><span id="shipping-name" class="raleway-600" style="color: black;"></span></strong></p> 
+                        <p><strong><span id="shipping-address" class="raleway-400" style="color: rgb(96, 96, 96);"></span></strong></p>
+                        <span style="" class="raleway-400">Amount Paid:</span>
+                        <strong> $<span id="shipping-amount-paid" class="mont-600"></span></strong> 
+                    </span>
+                </div>
+           </div>
 
+           <div class="mt-05" style=" display: flex; flex-direction: column; width: 100%; height: 200px; padding: 1em 0em;  justify-content: space-between; border-bottom: 1px solid rgb(184, 79, 4); position: relative;">
+                <div class="overflow" id="summary-cont">
+                    <!-- DYNAMIC CONTENT HERE -->
+                </div>    
+            </div>
+            <!-- Button to trigger the email notification -->
+    <div style="text-align: center; padding: 20px 0px;">
+        <button id="send-email-btn" class="cta-btn secondary raleway-600 background-color">Send Invoice to Email</button>
+    </div>
 
+    <!-- Email notification message that will be displayed when the invoice is "sent"  -->
+    <div id="email-notification"></div>
 
-            </div>    
-       <!-- Button to trigger the email notification -->
-<div style="text-align: center; margin-top: 20px;">
-    <button id="send-email-btn">Send Invoice to Email</button>
-  </div>
-  
-  <!-- Email notification message that will be displayed when the invoice is "sent" -->
-  <div id="email-notification" style="display: none;">The invoice has been sent to your email!</div>
-  
-   
 </body>
 </html>
 

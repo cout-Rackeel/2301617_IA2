@@ -44,15 +44,16 @@ function displayCartSummary() {
             const item = document.createElement("div");
             item.className = "cart-item";
             item.innerHTML = `
-                <p><strong>${product.name}</strong> x ${product.number_of_copies} @ $${product.price.toFixed(2)}</p>
-                <p>Total: $${(product.number_of_copies * product.price).toFixed(2)}</p>
+                <p class="raleway-600"><strong>${product.name}</strong> x ${product.number_of_copies} @ $${product.price.toFixed(2)}</p>
+                <p class="mont-600">Total: $${(product.number_of_copies * product.price).toFixed(2)}</p>
             `;
             cartSummary.appendChild(item);
             totalCost += product.number_of_copies * product.price;
         });
     }
-
+    totalCostEl.className = "mont-600"
     totalCostEl.textContent = totalCost.toFixed(2);
+    
 }
 
 // Show Shipping Details Form

@@ -64,16 +64,26 @@ function validatePassword(password, confirmPassword , userIndex){
 }
 
 resetForm.addEventListener("submit", (ev) => {
+    // Stops Form from Submitting
     ev.preventDefault();
+
+    //Finds User based on login within local stroage
     var userIndex = findUserIndex(ev.target[0].value);
 
+    //Tests if User found
     if(userIndex != -1 && count < 1){
         alert("User Found");
         count++;
     }
-    
+
+    //Checks to see if both passwords are the same
     validatePassword(ev.target[1].value.trim() , ev.target[2].value.trim() , userIndex);
 })
+
+//Resets Form
+function clearForm(){
+    loginForm.reset();
+}
 
 
 
