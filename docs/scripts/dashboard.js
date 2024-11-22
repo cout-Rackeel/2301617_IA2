@@ -1,6 +1,7 @@
 let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
 let registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || {};  
 
+
 //calculate age function
 function calculateAge(dob) {
     const birthDate = new Date(dob);
@@ -55,21 +56,26 @@ function ShowUserFrequency(){
   // Create HTML for gender chart
   let genderHTML = `
     <div class="chart-container">
-      <h2>Gender Distribution Chart</h2>
+      <h2 class="raleway-900">Gender Distribution Chart</h2>
     <div class="chart">
   `;
 
   for (const [gender, count] of Object.entries(genderData)) {
     const percentage = (count / maxGenderValue) * 100;
+    const maleImg = "./assets/images/blue.jpeg";
+    const femaleImg = "./assets/images/pink.jpg";
     genderHTML += `
       <div class="bar-group">
-          <div class="label">${gender}</div>
+          <div class="label mont-400">${gender}</div>
           <div class="bar-container">
-              <img src="./assets/images/blue.jpeg" class="bar-image" style="width: ${percentage}%" alt="bar">
+              <img src=${ gender == "Male" ? maleImg : femaleImg} class="bar-image" style="width: ${percentage}%" alt="bar">
           </div>
-          <span class="count">${count}</span>
+          <span class="count ${ gender == "Male" ? "male" : "female"} mont-400">${count}</span>
       </div>
     `;
+
+    console.log(count);
+    console.log(percentage);
   }
 
   genderHTML += `
@@ -80,7 +86,7 @@ function ShowUserFrequency(){
   // Create HTML for age chart
   let ageHTML = `
     <div class="chart-container">
-      <h2>Age Distribution Chart</h2>
+      <h2 class="raleway-900">Age Distribution Chart</h2>
     <div class="chart">
   `;
 
@@ -88,11 +94,11 @@ function ShowUserFrequency(){
     const percentage = (count / maxAgeValue) * 100;
     ageHTML += `
       <div class="bar-group">
-        <div class="label">${ageGroup}</div>
+        <div class="label mont-400">${ageGroup}</div>
         <div class="bar-container">
           <img src="./assets/images/blue.jpeg" class="bar-image" style="width: ${percentage}%" alt="bar">
         </div>
-          <span class="count">${count}</span>
+          <span class="count mont-400">${count}</span>
         </div>
     `;
   }
@@ -272,21 +278,22 @@ function calculateSummary() {
   const allInvoices = JSON.parse(localStorage.getItem("AllInvoices") || "[]");
 
   // Total number of users
-  const totalUsers = registrationData.length;
+  const totalUsers = parseInt(registrationData.length);
 
   // Total money generated and total products ordered
-  let totalMoneyGenerated = parseFloat(0);
-  let totalProductsOrdered = 0;
+  let  totalMoneyGenerated = parseFloat(0);
+  let  totalProductsOrdered = parseInt(0);
 
   allInvoices.forEach(invoice => {
-      totalMoneyGenerated += parseFloat(invoice.grandTotal).toFixed(2); // Add the grand total of the invoice
+      totalMoneyGenerated += parseFloat(invoice.grandTotal); // Add the grand total of the invoice
+      console.log(totalMoneyGenerated);
       invoice.products.forEach(product => {
-          totalProductsOrdered += parseFloat(product.number_of_copies); // Count the total number of copies of products
+          totalProductsOrdered += parseInt(product.number_of_copies); // Count the total number of copies of products
       });
   });
 
   document.getElementById('totUsers').innerHTML = totalUsers;
-  document.getElementById('totEarnt').innerHTML = `$${totalMoneyGenerated}`;
+  document.getElementById('totEarnt').innerHTML = `$${totalMoneyGenerated.toFixed(2)}`;
   document.getElementById('totOrders').innerHTML = totalProductsOrdered;
 
   // Display the summary in the specified container
