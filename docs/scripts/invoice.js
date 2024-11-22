@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const date = new Date();
         const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
         const randomNumber = Math.floor(Math.random() * 10000);
-        return `${formattedDate}-${randomNumber}`;
+        return `${formattedDate}-   `;
     }
 
     // Fetch Cart Items from Registration Data
@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Create an invoice object
         var invoice = {
+            company_name : "The Crochet Cove",
             trn : user.trn,
             invoiceNumber: invoiceNumber,
             date: new Date().toLocaleDateString(),
