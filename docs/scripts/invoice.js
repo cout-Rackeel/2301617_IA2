@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
 
     // Fetch TRN and Registration Data from localStorage
-    let registeredUser = registrationData.find(user => user.trn);
+    let registeredUser = registrationData[userIndex];
 
     // Log registrationData to check for shipping details
     console.log("Registration Data:", registrationData);
